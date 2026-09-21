@@ -476,32 +476,7 @@
             margin-bottom: -1px;
         }
 
-        .apple-hero-floating-callout {
-            position: absolute;
-            bottom: 24px;
-            right: -40px;
-            background-color: rgba(255, 255, 255, 0.94);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid var(--color-hairline-silver);
-            border-radius: var(--radius-cards);
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
-            z-index: 10;
-            text-align: left;
-        }
-
         @media (max-width: 991px) {
-            .apple-hero-floating-callout {
-                position: static;
-                margin: 20px auto 0;
-                max-width: 320px;
-                right: auto;
-                bottom: auto;
-            }
             .apple-floating-nav-links { display: none; }
         }
 
@@ -1107,23 +1082,8 @@
                     @endif
                 </div>
 
-                <!-- Centerpiece Developer Visual (Edge-Free, Resting Flush to the Bottom) -->
+                <!-- Centerpiece Developer Visual (100% Clean, Unobstructed, Resting Flush to the Bottom) -->
                 <div class="apple-hero-stage-visual">
-                    <div class="apple-hero-floating-callout">
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-1">
-                                <span class="d-inline-block rounded-circle bg-success" style="width: 8px; height: 8px;"></span>
-                                <span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">Tersedia untuk Kerja Sama</span>
-                            </div>
-                            <div style="font-size: 12px; color: var(--color-slate);">
-                                IPK {{ $settings['about_gpa'] ?? '3.76' }} • Full-Stack Web Development
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn-pricing-blue-pill py-1 px-3">
-                            Hubungi ›
-                        </a>
-                    </div>
-
                     <picture>
                         <img src="{{ asset('assets/dimasdimas.png') }}" alt="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}" class="apple-hero-edgefree-img" fetchpriority="high">
                     </picture>
@@ -1140,16 +1100,19 @@
                         <div class="stat-label">IPK Kumulatif</div>
                     </div>
                     <div class="col-6 col-md-3">
+                        <div class="stat-number d-flex align-items-center justify-content-center gap-2">
+                            <span class="d-inline-block rounded-circle bg-success" style="width: 9px; height: 9px; box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.25);"></span>
+                            <span>Tersedia</span>
+                        </div>
+                        <div class="stat-label">Status Kolaborasi</div>
+                    </div>
+                    <div class="col-6 col-md-3">
                         <div class="stat-number">{{ count($projects) }}+</div>
                         <div class="stat-label">Projek Selesai</div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="stat-number">{{ count($certifications) }}</div>
                         <div class="stat-label">Sertifikasi Resmi</div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Dedikasi Kualitas</div>
                     </div>
                 </div>
             </div>
@@ -1801,8 +1764,7 @@
                     "Full Stack Web Developer",
                     "Software Engineer",
                     "Backend Architect",
-                    "Frontend Developer",
-                    "Laravel & Next.js Pro"
+                    "Frontend Developer"
                 ];
                 let currentRoleIdx = 0;
 
