@@ -333,7 +333,7 @@
 
         /* Hero Stage */
         .apple-hero-section {
-            padding-top: 110px;
+            padding-top: 148px;
             padding-bottom: 0 !important;
             background-color: var(--color-gallery-white);
             text-align: center;
@@ -344,13 +344,13 @@
         .apple-hero-container {
             max-width: 980px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         .apple-hero-stage-visual {
             position: relative;
             max-width: 440px;
-            margin: 40px auto 0;
+            margin: 36px auto 0;
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -372,8 +372,8 @@
         .apple-hero-floating-callout {
             position: absolute;
             bottom: 24px;
-            right: -60px;
-            background-color: rgba(255, 255, 255, 0.92);
+            right: -40px;
+            background-color: rgba(255, 255, 255, 0.94);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             border: 1px solid var(--color-hairline-silver);
@@ -924,34 +924,30 @@
         <section class="apple-hero-section" data-aos="fade-up">
             <div class="apple-hero-container">
                 <div class="apple-kicker">
-                    {{ $settings['hero_kicker'] ?? 'Full-Stack Developer & Software Engineer' }}
+                    {{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} • Software Engineer
                 </div>
 
                 <h1 class="apple-hero-headline">
-                    {{ $settings['hero_title'] ?? 'Membangun Solusi Web Berkelas Dunia.' }}
+                    {{ $settings['hero_title'] ?? 'Full Stack Web Developer' }}
                 </h1>
 
-                <p class="apple-lead-text mx-auto mb-4" style="max-width: 680px;">
-                    {{ $settings['hero_description'] ?? 'Mengubah ide dan konsep kompleks menjadi aplikasi web modular, berkinerja tinggi, dan berstandar internasional.' }}
+                <p class="apple-lead-text mx-auto mb-4" style="max-width: 640px;">
+                    Mengembangkan aplikasi web modern berkinerja tinggi, arsitektur modular yang tangguh, dan integrasi sistem cerdas.
                 </p>
 
                 <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap mb-4">
-                    <a href="#projects" class="btn-apple-primary">
-                        Eksplorasi Karya
+                    <a href="#projects" class="btn-pricing-blue-pill py-2 px-4" style="font-size: 14px; font-weight: 500;">
+                        Eksplorasi Karya ›
                     </a>
                     @if(isset($settings['cv_link']) && $settings['cv_link'] !== '#')
-                        <a href="{{ asset('storage/' . $settings['cv_link']) }}" download class="btn-apple-secondary">
-                            Unduh CV <i class="fas fa-arrow-down ms-1" style="font-size: 11px;"></i>
+                        <a href="{{ asset('storage/' . $settings['cv_link']) }}" download class="btn-explore-pill py-2 px-4" style="font-size: 14px; font-weight: 500;">
+                            Unduh CV
                         </a>
                     @else
-                        <a href="#about" class="btn-apple-secondary">
-                            Lihat Profil
+                        <a href="#about" class="btn-explore-pill py-2 px-4" style="font-size: 14px; font-weight: 500;">
+                            Tentang Dimas
                         </a>
                     @endif
-                    <a href="#contact" class="apple-link-blue ms-1">
-                        <span>Konsultasi Proyek</span>
-                        <span class="chevron">›</span>
-                    </a>
                 </div>
 
                 <!-- Centerpiece Developer Visual (Edge-Free, Resting Flush to the Bottom) -->
