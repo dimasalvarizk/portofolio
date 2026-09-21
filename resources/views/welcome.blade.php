@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- SEO Meta Tags -->
-    <title>{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} — Full Stack Developer</title>
+    <title>{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}</title>
     <meta name="description" content="{{ $settings['about_bio'] ?? 'Portofolio Full Stack Developer Dimas Alva Rizki. Rekayasa perangkat lunak modern, arsitektur handal, dan desain interaktif berkelas dunia.' }}">
     <meta name="keywords" content="Dimas Alva Rizki, Apple Portfolio, Web Developer, Full Stack Developer, Laravel, Tailwind CSS, Software Engineer, Purwokerto">
     <meta name="author" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}">
@@ -14,16 +14,17 @@
     <!-- Open Graph & Twitter Cards -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} — Full Stack Developer">
+    <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}">
     <meta property="og:description" content="{{ $settings['about_bio'] ?? 'Portofolio Full Stack Developer Dimas Alva Rizki. Rekayasa perangkat lunak modern, arsitektur handal, dan desain interaktif berkelas dunia.' }}">
     <meta property="og:image" content="{{ asset('assets/dimasdimas.png') }}">
-    <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} Portfolio">
+    <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} — Full Stack Developer">
+    <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}">
     <meta name="twitter:description" content="{{ $settings['about_bio'] ?? 'Portofolio Full Stack Developer Dimas Alva Rizki. Rekayasa perangkat lunak modern, arsitektur handal, dan desain interaktif berkelas dunia.' }}">
     <meta name="twitter:image" content="{{ asset('assets/dimasdimas.png') }}">
 
-    <link rel="icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/favicon.svg') }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
 
     <!-- Fonts & Icons (Apple Typography Standard: Inter / SF Pro) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -484,53 +485,6 @@
             margin-top: 6px;
         }
 
-        .apple-status-pill {
-            background-color: rgba(255, 255, 255, 0.92);
-            border: 1px solid var(--color-hairline-silver);
-            padding: 6px 16px;
-            border-radius: var(--radius-pills);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--color-ink);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            margin-bottom: 14px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .apple-status-pill:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-        }
-
-        .apple-status-dot-pulse {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background-color: #34c759;
-            box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.25);
-            display: inline-block;
-            flex-shrink: 0;
-            animation: liveDotPulse 2s infinite ease-in-out;
-        }
-
-        .apple-status-chip-inline {
-            background-color: rgba(52, 199, 89, 0.1);
-            color: #1b7a37;
-            border: 1px solid rgba(52, 199, 89, 0.25);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: var(--radius-pills);
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-        }
-
         .apple-section-white {
             padding: 100px 0;
             background-color: var(--color-gallery-white);
@@ -558,6 +512,166 @@
             box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.04);
         }
 
+        /* Apple Tech Bento & Skills Matrix (Clean & Balanced) */
+        .apple-tech-card {
+            background-color: var(--color-gallery-white);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-cards);
+            padding: 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .apple-tech-card:hover {
+            border-color: #c7c7cc;
+            box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .apple-tech-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .apple-tech-title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-ink);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .apple-tech-counter {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-slate);
+            background-color: var(--color-studio-mist);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-pills);
+            padding: 3px 10px;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        .apple-tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .apple-tech-chip {
+            background-color: var(--color-studio-mist);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            padding: 7px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-ink);
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .apple-tech-chip:hover {
+            background-color: var(--color-gallery-white);
+            border-color: var(--color-pricing-blue);
+            color: var(--color-pricing-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.08);
+        }
+
+        /* Apple Credential & Certification Card */
+        .apple-cert-card {
+            background-color: var(--color-gallery-white);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-cards);
+            padding: 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+
+        .apple-cert-card:hover {
+            border-color: #c7c7cc;
+            box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .apple-cert-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .apple-cert-issuer-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-ink);
+            background-color: var(--color-studio-mist);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-pills);
+            padding: 4px 12px;
+            letter-spacing: 0.02em;
+            max-width: 72%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+        }
+
+        .apple-cert-year-badge {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-launch-orange);
+            background-color: rgba(182, 68, 0, 0.08);
+            border-radius: var(--radius-pills);
+            padding: 3px 9px;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .apple-cert-title {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--color-ink);
+            line-height: 1.35;
+            margin-bottom: 10px;
+            min-height: 48px;
+        }
+
+        .apple-cert-issuer-text {
+            font-size: 13px;
+            color: var(--color-slate);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .apple-cert-footer {
+            padding-top: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .apple-pill-tag {
             background-color: var(--color-studio-mist);
             color: var(--color-ink);
@@ -575,6 +689,126 @@
         .apple-pill-tag:hover {
             background-color: #e8e8ed;
             border-color: #d2d2d7;
+        }
+
+        /* Apple Project Showcase Cards */
+        .apple-project-card {
+            background-color: var(--color-gallery-white);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-cards);
+            padding: 24px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+
+        .apple-project-card:hover {
+            border-color: #c7c7cc;
+            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.07);
+            transform: translateY(-2px);
+        }
+
+        .apple-project-media-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: var(--color-studio-mist);
+            border: 1px solid var(--color-border-card);
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .apple-browser-bar {
+            height: 22px;
+            background-color: rgba(245, 245, 247, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .apple-browser-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #d1d1d6;
+        }
+
+        .apple-project-media-img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .apple-project-card:hover .apple-project-media-img {
+            transform: scale(1.03);
+        }
+
+        .apple-project-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-launch-orange);
+            background-color: rgba(182, 68, 0, 0.07);
+            border-radius: var(--radius-pills);
+            padding: 3px 10px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .apple-project-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-ink);
+            letter-spacing: -0.015em;
+            line-height: 1.35;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 48px;
+        }
+
+        .apple-project-desc {
+            font-size: 13px;
+            color: var(--color-slate);
+            line-height: 1.45;
+            margin-bottom: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 38px;
+        }
+
+        .apple-project-tech-tag {
+            background-color: var(--color-studio-mist);
+            color: var(--color-ink);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .apple-project-actions {
+            padding-top: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .apple-media-frame {
@@ -705,23 +939,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
             border-color: var(--color-pricing-blue);
-        }
-
-        .apple-ai-live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #34c759;
-            box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.25);
-            display: inline-block;
-            flex-shrink: 0;
-            animation: liveDotPulse 2s infinite;
-        }
-
-        @keyframes liveDotPulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
         }
 
         .apple-ai-trigger-badge {
@@ -1029,13 +1246,6 @@
         <!-- 2. HERO SHOWCASE STAGE -->
         <section class="apple-hero-section" data-aos="fade-up">
             <div class="apple-hero-container">
-                <div class="d-flex justify-content-center">
-                    <div class="apple-status-pill">
-                        <span class="apple-status-dot-pulse"></span>
-                        <span>Tersedia untuk Kolaborasi & Proyek Baru</span>
-                    </div>
-                </div>
-
                 <div class="apple-kicker">
                     {{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} • Software Engineer
                 </div>
@@ -1047,7 +1257,7 @@
                 </h1>
 
                 <p class="apple-lead-text mx-auto mb-4" style="max-width: 640px;">
-                    Mengembangkan aplikasi web modern berkinerja tinggi, arsitektur modular yang tangguh, dan integrasi sistem cerdas.
+                    {{ $settings['hero_description'] ?? 'Mengembangkan aplikasi web modern berkinerja tinggi, arsitektur modular yang tangguh, dan integrasi sistem cerdas.' }}
                 </p>
 
                 <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap mb-4">
@@ -1101,43 +1311,69 @@
         <!-- 4. ABOUT SECTION (Gallery White) -->
         <section class="apple-section-white" id="about" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-7">
-                        <div class="apple-kicker">Profil & Filosofi</div>
-                        <h2 class="apple-section-headline">
-                            Kode bersih. Kinerja terukur. Detail yang sempurna.
-                        </h2>
-                        <p class="apple-lead-text mb-4" style="text-align: justify;">
-                            {{ $settings['about_bio'] ?? 'Saya adalah mahasiswa Teknik Informatika di Universitas Muhammadiyah Purwokerto dengan spesialisasi pengembangan full-stack web. Berfokus pada pembangunan arsitektur aplikasi yang tangguh, aman, dan dirancang untuk memberikan pengalaman pengguna tanpa cela.' }}
-                        </p>
-                        <p class="apple-body-muted mb-0">
-                            Pengalaman mencakup integrasi RESTful API, optimalisasi database, penerapan pola desain modern, serta tata letak antarmuka responsif yang memprioritaskan kemudahan akses di semua perangkat.
-                        </p>
+                <div class="row g-5 align-items-stretch">
+                    <div class="col-lg-7 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="apple-kicker">Profil & Filosofi</div>
+                            <h2 class="apple-section-headline mb-4">
+                                Kode bersih. Kinerja terukur. Detail yang sempurna.
+                            </h2>
+                            <p class="apple-lead-text mb-4" style="text-align: justify; font-size: 16px; line-height: 1.65;">
+                                {{ $settings['about_bio'] ?? 'Saya adalah mahasiswa Teknik Informatika di Universitas Muhammadiyah Purwokerto dengan spesialisasi pengembangan full-stack web. Berfokus pada pembangunan arsitektur aplikasi yang tangguh, aman, dan dirancang untuk memberikan pengalaman pengguna tanpa cela.' }}
+                            </p>
+                        </div>
+                        <div class="p-4 rounded-4" style="background-color: var(--color-studio-mist); border: 1px solid var(--color-border-card);">
+                            <p class="apple-body-muted mb-0" style="font-size: 14px; line-height: 1.6;">
+                                <strong class="text-dark">Fokus Rekayasa:</strong> Pengalaman mencakup integrasi RESTful API terstandarisasi, optimalisasi performa database, penerapan prinsip kode bersih (*clean architecture*), dan desain antarmuka responsif modern.
+                            </p>
+                        </div>
                     </div>
 
                     <div class="col-lg-5">
-                        <div class="apple-card-white" style="background-color: var(--color-studio-mist);">
-                            <div class="apple-kicker mb-3">Spesifikasi Pengembang</div>
-                            <div class="d-flex flex-column gap-3">
-                                <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
-                                    <span class="apple-body-muted">Fokus Keahlian</span>
-                                    <span class="fw-semibold text-dark" style="font-size: 14px;">Full-Stack Web</span>
+                        <div class="apple-card-white h-100" style="background-color: var(--color-studio-mist); padding: 32px;">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="apple-kicker mb-0">Spesifikasi Pengembang</span>
+                                    <span class="badge rounded-pill bg-white text-dark border px-2 py-1" style="font-size: 11px; font-weight: 600;">Spec Sheet</span>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
-                                    <span class="apple-body-muted">Institusi</span>
-                                    <span class="fw-semibold text-dark" style="font-size: 14px;">Univ. Muhammadiyah Purwokerto</span>
+                                <h3 style="font-size: 20px; font-weight: 700; color: var(--color-ink); margin-bottom: 20px;">
+                                    {{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}
+                                </h3>
+
+                                <div class="d-flex flex-column gap-3 mb-4">
+                                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
+                                        <span class="apple-body-muted" style="font-size: 13px;">Peran Utama</span>
+                                        <span class="fw-semibold text-dark" style="font-size: 13px;">{{ $settings['hero_title'] ?? 'Full-Stack Developer' }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
+                                        <span class="apple-body-muted" style="font-size: 13px;">Stack Terpilih</span>
+                                        <span class="fw-semibold text-dark" style="font-size: 13px;">Laravel, Next.js, Node.js</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
+                                        <span class="apple-body-muted" style="font-size: 13px;">Institusi</span>
+                                        <span class="fw-semibold text-dark" style="font-size: 13px;">Univ. Muhammadiyah Purwokerto</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
+                                        <span class="apple-body-muted" style="font-size: 13px;">Prestasi Akademik</span>
+                                        <span class="fw-semibold text-dark" style="font-size: 13px;">GPA {{ $settings['about_gpa'] ?? '3.76' }} / 4.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center py-2">
+                                        <span class="apple-body-muted" style="font-size: 13px;">Kesiapan Proyek</span>
+                                        <span class="fw-semibold text-dark" style="font-size: 13px;">Skala Produksi</span>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
-                                    <span class="apple-body-muted">Prestasi Akademik</span>
-                                    <span class="fw-semibold text-dark" style="font-size: 14px;">GPA {{ $settings['about_gpa'] ?? '3.76' }} / 4.00</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center py-2">
-                                    <span class="apple-body-muted">Status Kolaborasi</span>
-                                    <span class="apple-status-chip-inline">
-                                        <span class="apple-status-dot-pulse" style="width: 6px; height: 6px;"></span>
-                                        Tersedia untuk Proyek
-                                    </span>
-                                </div>
+                            </div>
+
+                            <div class="pt-3 border-top" style="border-color: var(--color-border-card) !important;">
+                                @if(isset($settings['cv_link']) && $settings['cv_link'] !== '#')
+                                    <a href="{{ asset('storage/' . $settings['cv_link']) }}" download class="btn-pricing-blue-pill w-100 text-center py-2" style="font-size: 13px; font-weight: 500;">
+                                        Unduh Curriculum Vitae ›
+                                    </a>
+                                @else
+                                    <a href="#contact" class="btn-pricing-blue-pill w-100 text-center py-2" style="font-size: 13px; font-weight: 500;">
+                                        Mulai Diskusi Proyek ›
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -1161,21 +1397,19 @@
 
                 <div class="row g-4">
                     @forelse($skills as $category => $items)
-                        <div class="col-md-6 col-lg-4">
-                            <div class="apple-card-white">
-                                <div>
-                                    <div class="apple-kicker mb-2">{{ $category }}</div>
-                                    <h3 style="font-size: 20px; font-weight: 700; color: var(--color-ink); margin-bottom: 20px;">
-                                        Stack Terpilih
-                                    </h3>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        @foreach($items as $item)
-                                            <span class="apple-pill-tag">
-                                                <i class="{{ $item->icon ?: 'fas fa-code' }} text-secondary" style="font-size: 12px;"></i>
-                                                {{ $item->name }}
-                                            </span>
-                                        @endforeach
-                                    </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="apple-tech-card">
+                                <div class="apple-tech-header">
+                                    <h3 class="apple-tech-title">{{ $category }}</h3>
+                                    <span class="apple-tech-counter">{{ count($items) }} Komponen</span>
+                                </div>
+
+                                <div class="apple-tech-grid">
+                                    @foreach($items as $item)
+                                        <div class="apple-tech-chip">
+                                            <span>{{ $item->name }}</span>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -1255,35 +1489,45 @@
         <!-- 7. CERTIFICATIONS SHOWCASE (Studio Mist) -->
         <section class="apple-section-mist" id="certifications" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="mb-5">
-                    <div class="apple-kicker">Validasi Resmi</div>
-                    <h2 class="apple-section-headline">Sertifikasi Profesional.</h2>
+                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+                    <div>
+                        <div class="apple-kicker">Validasi Resmi</div>
+                        <h2 class="apple-section-headline mb-0">Sertifikasi Profesional.</h2>
+                    </div>
+                    <span class="apple-body-muted d-none d-md-inline" style="font-size: 13px;">
+                        {{ count($certifications) }} Kredensial Terverifikasi
+                    </span>
                 </div>
 
                 <div class="row g-4">
                     @forelse($certifications as $cert)
                         <div class="col-md-6 col-lg-4">
-                            <div class="apple-card-white">
+                            <div class="apple-cert-card">
                                 <div>
-                                    <div class="d-flex align-items-center justify-content-between mb-3">
-                                        <i class="{{ $cert->icon ?: 'fas fa-certificate' }} text-dark fs-5"></i>
-                                        <span class="apple-kicker mb-0">{{ $cert->year }}</span>
+                                    <div class="apple-cert-header">
+                                        <span class="apple-cert-issuer-badge" title="{{ $cert->issuer }}">
+                                            {{ $cert->issuer }}
+                                        </span>
+                                        <span class="apple-cert-year-badge">{{ $cert->year }}</span>
                                     </div>
-                                    <h4 style="font-size: 18px; font-weight: 700; color: var(--color-ink); line-height: 1.3; margin-bottom: 8px;">
-                                        {{ $cert->name }}
-                                    </h4>
-                                    <p class="apple-body-muted mb-4" style="font-size: 13px;">
-                                        Penerbit: {{ $cert->issuer }}
-                                    </p>
+
+                                    <h3 class="apple-cert-title">{{ $cert->name }}</h3>
+                                    <p class="apple-cert-issuer-text">Penerbit: {{ $cert->issuer }}</p>
                                 </div>
-                                @if($cert->link)
-                                    <div>
+
+                                <div class="apple-cert-footer">
+                                    @if($cert->link && $cert->link !== '#')
                                         <a href="{{ $cert->link }}" target="_blank" class="apple-link-blue" style="font-size: 13px;">
                                             <span>Verifikasi Kredensial</span>
                                             <span class="chevron">›</span>
                                         </a>
-                                    </div>
-                                @endif
+                                    @else
+                                        <span class="d-inline-flex align-items-center gap-1 text-secondary" style="font-size: 12px; font-weight: 500;">
+                                            <i class="fas fa-check-circle text-primary" style="font-size: 11px;"></i>
+                                            <span>Sertifikat Resmi</span>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @empty
@@ -1328,39 +1572,49 @@
                 <div class="row g-4" id="projects-grid">
                     @foreach($projects as $index => $project)
                         <div class="col-md-6 col-lg-4 project-item filter-item" data-category="{{ $project->category }}" data-id="{{ $project->id }}">
-                            <div class="apple-card-white">
+                            <div class="apple-project-card">
                                 <div>
-                                    <!-- Media Frame -->
-                                    <div class="apple-media-frame">
-                                        <img src="{{ asset('storage/' . $project->image_url) }}" alt="{{ $project->title }}" loading="lazy">
+                                    <!-- Safari Mockup Media Frame -->
+                                    <div class="apple-project-media-wrap">
+                                        <div class="apple-browser-bar">
+                                            <span class="apple-browser-dot"></span>
+                                            <span class="apple-browser-dot"></span>
+                                            <span class="apple-browser-dot"></span>
+                                        </div>
+                                        <img src="{{ asset('storage/' . $project->image_url) }}" alt="{{ $project->title }}" class="apple-project-media-img" loading="lazy">
                                     </div>
 
-                                    <div class="apple-kicker mb-1" style="font-size: 11px;">
-                                        {{ $project->category }}
+                                    <div>
+                                        <span class="apple-project-badge">{{ $project->category }}</span>
                                     </div>
 
-                                    <h4 style="font-size: 20px; font-weight: 700; color: var(--color-ink); margin-bottom: 8px;">
+                                    <h3 class="apple-project-title" title="{{ $project->title }}">
                                         {{ $project->title }}
-                                    </h4>
+                                    </h3>
 
-                                    <p class="apple-body-muted mb-3" style="text-align: justify; font-size: 14px;">
-                                        {{ Str::limit(strip_tags($project->description), 95) }}
+                                    <p class="apple-project-desc">
+                                        {{ Str::limit(strip_tags($project->description), 110) }}
                                     </p>
 
-                                    <!-- Tech tags -->
-                                    <div class="d-flex flex-wrap gap-1 mb-4">
+                                    <!-- Tech tags (Clean, max 4 tokens) -->
+                                    <div class="d-flex flex-wrap gap-1 mb-3">
                                         @if(is_array($project->tech_stack))
-                                            @foreach($project->tech_stack as $tech)
-                                                <span class="apple-pill-tag" style="font-size: 11px; padding: 3px 10px;">
+                                            @foreach(array_slice($project->tech_stack, 0, 4) as $tech)
+                                                <span class="apple-project-tech-tag">
                                                     {{ trim($tech) }}
                                                 </span>
                                             @endforeach
+                                            @if(count($project->tech_stack) > 4)
+                                                <span class="apple-project-tech-tag text-secondary" style="font-size: 10px;">
+                                                    +{{ count($project->tech_stack) - 4 }}
+                                                </span>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
 
                                 <!-- Action Buttons -->
-                                <div class="d-flex align-items-center gap-2 pt-3 border-top" style="border-color: var(--color-border-card) !important;">
+                                <div class="apple-project-actions">
                                     <a href="{{ route('project.show', $project->id) }}" class="btn-explore-pill flex-grow-1 text-center py-2">
                                         Detail
                                     </a>
@@ -1471,7 +1725,6 @@
     <!-- 10. APPLE INTELLIGENCE CHATBOT WIDGET -->
     <div class="apple-ai-trigger-wrap">
         <button class="apple-ai-trigger" id="chat-widget-toggle" title="Buka Asisten DimasBot" type="button" aria-label="Buka Chat AI">
-            <span class="apple-ai-live-dot"></span>
             <span>DimasBot</span>
             <span class="apple-ai-trigger-badge">AI</span>
         </button>
@@ -1480,7 +1733,6 @@
     <div class="apple-ai-window" id="chat-widget-window">
         <div class="apple-ai-header">
             <div class="d-flex align-items-center gap-2">
-                <span class="apple-ai-live-dot"></span>
                 <div>
                     <div style="font-size: 14px; font-weight: 600; color: var(--color-ink); line-height: 1.2;">DimasBot Intelligence</div>
                     <div style="font-size: 11px; color: var(--color-slate);">Asisten Portofolio</div>
@@ -1545,7 +1797,7 @@
                 <div class="col-md-6">
                     <div class="fw-bold text-dark mb-1">{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}</div>
                     <p class="mb-0 apple-body-muted" style="font-size: 13px;">
-                        Full Stack Web Developer & Software Engineer. Dirancang dengan presisi galeri Apple Style Reference.
+                        {{ $settings['hero_title'] ?? 'Full Stack Web Developer' }} & Software Engineer.
                     </p>
                 </div>
                 <div class="col-md-6 text-md-end">
@@ -1563,7 +1815,7 @@
                     Copyright &copy; {{ date('Y') }} {{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}. All rights reserved.
                 </div>
                 <div>
-                    Indonesia • Purwokerto
+                    Indonesia • Jakarta
                 </div>
             </div>
         </div>

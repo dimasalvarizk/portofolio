@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Experience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ExperienceController extends Controller
 {
@@ -40,6 +41,9 @@ class ExperienceController extends Controller
 
         Experience::create($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+
         return redirect()->route('admin.experiences.index')->with('success', 'Riwayat timeline berhasil ditambahkan!');
     }
 
@@ -66,6 +70,9 @@ class ExperienceController extends Controller
 
         $experience->update($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+
         return redirect()->route('admin.experiences.index')->with('success', 'Riwayat timeline berhasil diperbarui!');
     }
 
@@ -75,6 +82,10 @@ class ExperienceController extends Controller
     public function destroy(Experience $experience)
     {
         $experience->delete();
+
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+
         return redirect()->route('admin.experiences.index')->with('success', 'Riwayat timeline berhasil dihapus!');
     }
 }

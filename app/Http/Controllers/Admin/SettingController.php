@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
@@ -49,6 +50,10 @@ class SettingController extends Controller
             Setting::updateOrCreate(['key' => 'cv_link'], ['value' => $path]);
         }
 
-        return back()->with('success', 'Pengaturan portofolio berhasil diperbarui!');
+        // Invalidate Cache secara instan agar perubahan tampil Real Time di Frontend
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
+
+        return back()->with('success', 'Pengaturan portofolio berhasil diperbarui secara real time!');
     }
 }

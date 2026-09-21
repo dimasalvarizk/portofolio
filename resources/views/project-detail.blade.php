@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>{{ $project->title }} — Detail Projek | Dimas Alva Rizki</title>
+    <title>{{ $project->title }}</title>
     <meta name="description" content="{{ \Illuminate\Support\Str::limit(strip_tags($project->description), 160) }}">
     <meta name="keywords" content="{{ $project->title }}, {{ $project->category }}, Portofolio Projek, Dimas Alva Rizki, Web Developer">
     <meta name="author" content="Dimas Alva Rizki">
@@ -13,12 +13,13 @@
     <!-- Open Graph Cards -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $project->title }} — Detail Projek | Dimas Alva Rizki">
+    <meta property="og:title" content="{{ $project->title }}">
     <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($project->description), 160) }}">
     <meta property="og:image" content="{{ asset('storage/' . $project->image_url) }}">
     <meta property="og:site_name" content="Dimas Alva Rizki Portofolio">
 
-    <link rel="icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/favicon.svg') }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

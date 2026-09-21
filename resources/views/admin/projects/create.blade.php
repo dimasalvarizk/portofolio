@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Projek - Admin')
+@section('title', 'Tambah Projek')
 
-@section('nav_projects', 'active fw-bold border-bottom border-primary border-2 pb-1 d-inline-block')
+@section('nav_projects', 'active')
 
 @section('styles')
 <style>
-    /* --- QUILL WYSIWYG EDITOR GLASSMORPHISM DARK MODE --- */
+    /* --- QUILL WYSIWYG EDITOR APPLE LIGHT THEME --- */
     .quill-wrapper {
         width: 100% !important;
         display: block;
@@ -17,98 +17,95 @@
         box-sizing: border-box;
     }
     .ql-toolbar.ql-snow {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-        padding: 12px !important;
+        background: var(--color-studio-mist) !important;
+        border: 1px solid var(--color-hairline-silver) !important;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        padding: 10px 14px !important;
     }
     .ql-container.ql-snow {
-        background: rgba(0, 0, 0, 0.3) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background: var(--color-gallery-white) !important;
+        border: 1px solid var(--color-hairline-silver) !important;
         border-top: none !important;
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-        min-height: 250px;
-        font-family: 'Outfit', sans-serif;
-        font-size: 1rem;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        min-height: 220px;
+        font-family: var(--font-sf-pro);
+        font-size: 14px;
     }
     .ql-editor {
-        color: #e2e8f0 !important;
-        padding: 15px 20px !important;
-        min-height: 250px;
+        color: var(--color-ink) !important;
+        padding: 16px 20px !important;
+        min-height: 220px;
+        line-height: 1.6;
     }
     .ql-editor.ql-blank::before {
-        color: rgba(255, 255, 255, 0.3) !important;
+        color: var(--color-steel) !important;
         font-style: normal;
         left: 20px !important;
     }
     .ql-snow .ql-stroke {
-        stroke: #cbd5e1 !important;
+        stroke: var(--color-ink) !important;
     }
     .ql-snow .ql-fill {
-        fill: #cbd5e1 !important;
+        fill: var(--color-ink) !important;
     }
     .ql-snow .ql-picker {
-        color: #cbd5e1 !important;
+        color: var(--color-ink) !important;
     }
     .ql-snow.ql-toolbar button:hover .ql-stroke,
     .ql-snow.ql-toolbar button.ql-active .ql-stroke,
     .ql-snow .ql-picker-label:hover .ql-stroke,
     .ql-snow .ql-picker-label.ql-active .ql-stroke {
-        stroke: var(--secondary-color) !important;
+        stroke: var(--color-pricing-blue) !important;
     }
     .ql-snow.ql-toolbar button:hover .ql-fill,
     .ql-snow.ql-toolbar button.ql-active .ql-fill,
     .ql-snow .ql-picker-label:hover .ql-fill,
     .ql-snow .ql-picker-label.ql-active .ql-fill {
-        fill: var(--secondary-color) !important;
+        fill: var(--color-pricing-blue) !important;
     }
     .ql-snow.ql-toolbar button:hover,
     .ql-snow.ql-toolbar button.ql-active,
     .ql-snow .ql-picker-label:hover,
     .ql-snow .ql-picker-label.ql-active {
-        color: var(--secondary-color) !important;
+        color: var(--color-pricing-blue) !important;
     }
     .ql-snow .ql-picker-options {
-        background-color: #1e293b !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 8px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        padding: 8px !important;
+        background-color: var(--color-gallery-white) !important;
+        border: 1px solid var(--color-hairline-silver) !important;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 6px !important;
     }
     .ql-snow .ql-picker-item {
-        color: #cbd5e1 !important;
+        color: var(--color-ink) !important;
         padding: 4px 8px !important;
-        border-radius: 4px;
+        border-radius: 6px;
     }
     .ql-snow .ql-picker-item:hover,
     .ql-snow .ql-picker-item.ql-selected {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: var(--secondary-color) !important;
-    }
-
-    .btn-glass-cancel {
-        background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.2);
-        padding: 12px 30px; border-radius: 50px; font-weight: 600; transition: 0.3s;
-    }
-    .btn-glass-cancel:hover { background: rgba(255,255,255,0.1); color: white; border-color: white; }
-    
-    .form-control[type="file"] { padding: 10px; }
-    .form-control[type="file"]::file-selector-button {
-        background: rgba(255,255,255,0.1); color: white; border: none; border-radius: 6px; margin-right: 15px;
+        background-color: var(--color-studio-mist) !important;
+        color: var(--color-pricing-blue) !important;
     }
 </style>
 @endsection
 
 @section('content')
-<div class="row justify-content-center animate__animated animate__fadeIn">
+<div class="row justify-content-center">
     <div class="col-lg-10">
         
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 text-center text-md-start">
             <div class="mb-3 mb-md-0">
-                <h2 class="fw-bold mb-1 text-white">Buat Projek Baru</h2>
-                <p class="text-secondary mb-0" style="color: #cbd5e1 !important;">Tunjukkan karya terbaikmu kepada dunia.</p>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{{ route('admin.projects.index') }}" class="btn-action" title="Kembali">
+                        <i class="fas fa-arrow-left" style="font-size: 11px;"></i>
+                    </a>
+                    <div>
+                        <h1 class="page-header-title mb-0">Buat Projek Baru</h1>
+                        <p class="page-header-subtitle">Tampilkan karya dan inovasi terbaik Anda di galeri portofolio.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -119,51 +116,51 @@
                     
                     <div class="mb-4">
                         <label class="form-label">Judul Projek <span class="text-danger">*</span></label>
-                        <input type="text" name="title" class="form-control" placeholder="Misal: Sistem Informasi Sekolah" required autofocus>
+                        <input type="text" name="title" class="form-control" placeholder="Misal: Sistem Informasi Sekolah" required autofocus value="{{ old('title') }}">
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <label class="form-label">Kategori <span class="text-danger">*</span></label>
-                            <input type="text" name="category" class="form-control" placeholder="Contoh: Web Development" required>
+                            <input type="text" name="category" class="form-control" placeholder="Contoh: Web Development" required value="{{ old('category') }}">
                         </div>
                         <div class="col-md-6 mb-4">
                             <label class="form-label">Link Demo (Opsional)</label>
-                            <input type="url" name="link_demo" class="form-control" placeholder="https://domain-kamu.com">
-                            <small class="text-secondary" style="font-size: 0.8rem; opacity: 0.7;">Biarkan kosong jika projek privat.</small>
+                            <input type="url" name="link_demo" class="form-control" placeholder="https://domain-kamu.com" value="{{ old('link_demo') }}">
+                            <small class="text-secondary d-block mt-1" style="font-size: 12px;">Biarkan kosong jika projek bersifat internal / privat.</small>
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <label class="form-label">Teknologi (Tech Stack) <span class="text-danger">*</span></label>
-                        <input type="text" name="tech_stack" class="form-control" placeholder="Contoh: Laravel, MySQL, Bootstrap, Vue.js" required>
-                        <small class="text-info opacity-75"><i class="fas fa-info-circle"></i> Pisahkan dengan tanda koma (,)</small>
+                        <input type="text" name="tech_stack" class="form-control" placeholder="Contoh: Laravel, MySQL, Bootstrap, Vue.js" required value="{{ old('tech_stack') }}">
+                        <small class="text-secondary d-block mt-1" style="font-size: 12px;"><i class="fas fa-circle-info text-primary me-1"></i> Pisahkan setiap teknologi dengan tanda koma (,)</small>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label">Upload Gambar Cover <span class="text-danger">*</span></label>
+                        <label class="form-label">Upload Gambar Cover Utama <span class="text-danger">*</span></label>
                         <input type="file" name="image_url" class="form-control" accept="image/*" required>
-                        <small class="text-secondary" style="opacity: 0.7;">Format: JPG, PNG, JPEG. Max: 2MB.</small>
+                        <small class="text-secondary d-block mt-1" style="font-size: 12px;">Format yang didukung: JPG, PNG, JPEG, WebP. Maksimum ukuran: 2MB.</small>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label">Upload Gambar Tambahan (Opsional)</label>
+                        <label class="form-label">Upload Gambar Tambahan / Galeri (Opsional)</label>
                         <input type="file" name="additional_images[]" class="form-control" accept="image/*" multiple>
-                        <small class="text-secondary" style="opacity: 0.7;">Pilih satu atau beberapa gambar sekaligus. Format: JPG, PNG, JPEG. Max: 5MB per file.</small>
+                        <small class="text-secondary d-block mt-1" style="font-size: 12px;">Pilih satu atau beberapa gambar sekaligus untuk galeri mockup. Maksimum: 5MB per berkas.</small>
                     </div>
 
                     <div class="mb-5">
-                        <label class="form-label">Deskripsi Lengkap</label>
+                        <label class="form-label">Deskripsi Lengkap & Cerita Projek</label>
                         <div class="quill-wrapper">
                             <div id="quill-editor"></div>
                             <input type="hidden" name="description" id="description-input" value="{{ old('description') }}">
                         </div>
                     </div>
 
-                    <div class="d-flex gap-3 justify-content-end">
-                        <a href="{{ route('admin.projects.index') }}" class="btn btn-glass-cancel">Batal</a>
-                        <button type="submit" class="btn btn-glow-primary">
-                            <i class="fas fa-save me-2"></i> Simpan Projek
+                    <div class="d-flex gap-3 justify-content-end align-items-center">
+                        <a href="{{ route('admin.projects.index') }}" class="btn-glass-cancel">Batal</a>
+                        <button type="submit" class="btn-pricing-blue">
+                            <i class="fas fa-floppy-disk me-1"></i> Simpan Projek
                         </button>
                     </div>
 
@@ -178,14 +175,12 @@
 @section('scripts')
 <script>
     (function() {
-        // Function to load Quill resources dynamically if not already loaded
         function loadQuill(callback) {
             if (window.Quill) {
                 callback();
                 return;
             }
 
-            // Load CSS
             if (!document.getElementById('quill-css')) {
                 var link = document.createElement('link');
                 link.id = 'quill-css';
@@ -194,7 +189,6 @@
                 document.head.appendChild(link);
             }
 
-            // Load JS
             var script = document.getElementById('quill-js');
             if (!script) {
                 script = document.createElement('script');
@@ -203,7 +197,6 @@
                 script.onload = callback;
                 document.head.appendChild(script);
             } else {
-                // If script is already loading by another page instance, poll until ready
                 var interval = setInterval(function() {
                     if (window.Quill) {
                         clearInterval(interval);
@@ -213,23 +206,18 @@
             }
         }
 
-        // Initialize Quill editor instance
         function initQuill() {
             var editorEl = document.getElementById('quill-editor');
             var inputEl = document.getElementById('description-input');
             if (!editorEl || !inputEl) return;
             
-            // Prevent duplicate initialization
             if (editorEl.classList.contains('ql-container') || editorEl.dataset.quillLoading === 'true') return;
             editorEl.dataset.quillLoading = 'true';
 
             loadQuill(function() {
                 delete editorEl.dataset.quillLoading;
-                
-                // Double check to prevent concurrent initialization race condition
                 if (editorEl.classList.contains('ql-container')) return;
 
-                // Clean up any existing toolbars in the wrapper to avoid duplication
                 var wrapper = editorEl.closest('.quill-wrapper');
                 if (wrapper) {
                     var existingToolbars = wrapper.querySelectorAll('.ql-toolbar');
@@ -238,13 +226,12 @@
                     });
                 }
                 
-                // Reset the editor element to a clean state
                 editorEl.className = '';
                 editorEl.innerHTML = '';
 
                 var quill = new Quill(editorEl, {
                     theme: 'snow',
-                    placeholder: 'Ceritakan detail projek, fitur, dan tantangan yang dihadapi...',
+                    placeholder: 'Ceritakan detail projek, fitur unggulan, dan arsitektur teknis...',
                     modules: {
                         toolbar: [
                             [{ 'header': [1, 2, 3, false] }],
@@ -255,25 +242,17 @@
                     }
                 });
 
-                // Load initial content (if any, e.g. from Laravel old input)
                 if (inputEl.value) {
                     quill.root.innerHTML = inputEl.value;
                 }
 
-                // Sync data with hidden input on change
                 quill.on('text-change', function() {
                     inputEl.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
                 });
             });
         }
 
-        // Setup event listeners for standard load and SPA transitions (Livewire, Turbo, etc.)
         document.addEventListener('DOMContentLoaded', initQuill);
-        document.addEventListener('livewire:navigated', initQuill);
-        document.addEventListener('turbo:load', initQuill);
-        document.addEventListener('turbolinks:load', initQuill);
-        
-        // Execute immediately (handles case where SPA swaps content and script runs instantly)
         initQuill();
     })();
 </script>

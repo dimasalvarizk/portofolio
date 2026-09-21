@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -56,6 +57,10 @@ class ProjectController extends Controller
         $validated['tech_stack'] = explode(',', $request->tech_stack);
 
         Project::create($validated);
+
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
 
         return redirect()->route('admin.projects.index')->with('success', 'Projek berhasil dibuat!');
     }
@@ -115,6 +120,10 @@ class ProjectController extends Controller
         // 5. Simpan ke Database
         $project->update($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
+
         return redirect()->route('admin.projects.index')->with('success', 'Projek berhasil diperbarui!');
     }
 
@@ -133,6 +142,11 @@ class ProjectController extends Controller
             }
         }
         $project->delete();
+
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
+
         return back()->with('success', 'Projek dihapus');
     }
 
@@ -158,6 +172,9 @@ class ProjectController extends Controller
             $project->update([
                 'additional_images' => count($images) > 0 ? $images : null
             ]);
+
+            // Invalidate Cache Real-Time
+            Cache::forget('portfolio_data');
 
             return response()->json(['success' => true, 'message' => 'Gambar berhasil dihapus!']);
         }

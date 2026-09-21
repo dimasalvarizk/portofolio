@@ -29,9 +29,9 @@ class PortfolioController extends Controller
                 // 'projects' => Project::with('tags')->get(),
                 
                 return [
-                    'projects' => Project::all(),
+                    'projects' => Project::orderBy('id', 'desc')->get(),
                     'settings' => Setting::pluck('value', 'key')->all(),
-                    'timeline' => Experience::orderBy('id', 'asc')->get(),
+                    'timeline' => Experience::orderBy('id', 'desc')->get(),
                     'skills' => Skill::all()->groupBy('category'),
                     'certifications' => Certification::orderBy('id', 'desc')->get(),
                 ];

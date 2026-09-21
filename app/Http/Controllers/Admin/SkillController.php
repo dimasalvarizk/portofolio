@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SkillController extends Controller
 {
@@ -38,6 +39,10 @@ class SkillController extends Controller
 
         Skill::create($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
+
         return redirect()->route('admin.skills.index')->with('success', 'Keahlian berhasil ditambahkan!');
     }
 
@@ -62,6 +67,10 @@ class SkillController extends Controller
 
         $skill->update($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
+
         return redirect()->route('admin.skills.index')->with('success', 'Keahlian berhasil diperbarui!');
     }
 
@@ -71,6 +80,11 @@ class SkillController extends Controller
     public function destroy(Skill $skill)
     {
         $skill->delete();
+
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+        Cache::forget('chatbot_system_context');
+
         return redirect()->route('admin.skills.index')->with('success', 'Keahlian berhasil dihapus!');
     }
 }

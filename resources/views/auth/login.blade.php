@@ -3,182 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin Portofolio</title>
-    <link rel="icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
+    <title>Masuk Admin</title>
+    <link rel="icon" href="{{ asset('assets/favicon.svg') }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
+    
+    <!-- Preconnect CDN Hosts -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. SETUP UTAMA --- */
         :root {
-            --primary-color: #8b5cf6; /* Violet */
-            --secondary-color: #06b6d4; /* Cyan */
-            --bg-color: #0b0f19; /* Deeper Sleek Dark Navy */
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-muted: #94a3b8;
+            /* Apple Design Tokens */
+            --color-gallery-white: #ffffff;
+            --color-studio-mist: #f5f5f7;
+            --color-paper-frost: #fafafc;
+            --color-hairline-silver: #d6d6d6;
+            --color-control-gray: #e6e6e8;
+            --color-ink: #1d1d1f;
+            --color-slate: #707070;
+            --color-steel: #86868b;
+            --color-apple-blue: #0066cc;
+            --color-pricing-blue: #0071e3;
+            --color-launch-orange: #b64400;
+
+            --font-sf-pro: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+            --radius-cards: 28px;
+            --radius-inputs: 980px;
+            --radius-buttons: 9999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
-            margin: 0; padding: 0;
-            overflow: hidden; 
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; min-height: 100dvh;
+            font-family: var(--font-sf-pro);
+            background-color: var(--color-studio-mist);
+            color: var(--color-ink);
+            margin: 0;
+            padding: 24px;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Grid Overlay Background */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .login-card {
             width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            pointer-events: none;
+            max-width: 440px;
+            background: var(--color-gallery-white);
+            border: 1px solid var(--color-hairline-silver);
+            border-radius: var(--radius-cards);
+            padding: 48px 40px 40px;
+            text-align: center;
+            box-shadow: none;
+            position: relative;
         }
 
-        /* --- 2. ANIMATED BACKGROUND --- */
-        .ambient-light { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
-        .blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.35; animation: float 12s infinite ease-in-out alternate; }
-        .blob-1 { width: 400px; height: 400px; background: var(--primary-color); top: -50px; left: -50px; animation-delay: 0s; }
-        .blob-2 { width: 350px; height: 350px; background: var(--secondary-color); bottom: -50px; right: -50px; animation-delay: -6s; }
-        .blob-3 { width: 200px; height: 200px; background: #8b5cf6; bottom: 20%; left: 20%; opacity: 0.25; animation: float 15s infinite ease-in-out alternate-reverse; }
-        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 40px) scale(1.1); } }
-
-        /* --- 3. GLASSMORPHISM CARD --- */
-        .glass-card {
-            width: 100%; max-width: 420px; padding: 45px 40px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            border-radius: 24px; text-align: center; color: white;
-            position: relative; z-index: 10;
-            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            opacity: 0; transform: translateY(40px);
-            transition: border-color 0.3s;
+        .apple-id-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--color-studio-mist);
+            border: 1px solid var(--color-hairline-silver);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--color-ink);
+            font-size: 24px;
         }
-        .glass-card:hover {
-            border-color: rgba(6, 182, 212, 0.15);
-        }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 4. COMPONENT STYLING --- */
-        .logo-container {
-            width: 80px; height: 80px; background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 35px; color: #fff;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2); animation: pulse 3s infinite;
+        .login-title {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--color-ink);
+            margin-bottom: 6px;
         }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.2); } 50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.4); } }
-        
-        h4 { letter-spacing: 1px; font-weight: 700; margin-bottom: 5px; }
-        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px; }
 
-        .input-group-text, .form-control {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06);
-            color: white !important; padding: 12px; transition: all 0.3s ease;
+        .login-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: -0.224px;
+            color: var(--color-slate);
+            margin-bottom: 32px;
+            line-height: 1.4;
         }
-        .input-group-text { border-right: none; border-radius: 12px 0 0 12px; color: rgba(255, 255, 255, 0.6); }
-        .form-control { border-left: none; border-radius: 0 12px 12px 0; }
-        .form-control::placeholder { color: rgba(255, 255, 255, 0.25); }
-        
-        .input-group:focus-within .input-group-text, .input-group:focus-within .form-control {
-            background: rgba(255, 255, 255, 0.04); border-color: var(--secondary-color);
+
+        .apple-input-group {
+            position: relative;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            background: var(--color-gallery-white);
+            border: 1px solid var(--color-steel);
+            border-radius: var(--radius-inputs);
+            padding: 4px 16px 4px 18px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .input-group:focus-within .input-group-text { color: var(--secondary-color); }
 
-        .form-check-input { background-color: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.15); }
-        .form-check-input:checked { background-color: var(--primary-color); border-color: var(--primary-color); }
-        .form-check-label, .forgot-link { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
-        .forgot-link { text-decoration: none; transition: 0.3s; }
-        .forgot-link:hover { color: #fff; text-shadow: 0 0 10px var(--secondary-color); }
-
-        .btn-glow {
-            width: 100%; padding: 14px; border-radius: 12px; border: none;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white; font-weight: 600; letter-spacing: 1px; margin-top: 15px;
-            box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.35); transition: all 0.3s ease;
+        .apple-input-group:focus-within {
+            border-color: var(--color-pricing-blue);
+            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
         }
-        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(6, 182, 212, 0.45); filter: brightness(1.1); }
-        .back-link { display: inline-block; margin-top: 25px; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
-        .back-link:hover { color: white; }
-        .error-msg { color: #ff6b6b; font-size: 0.8rem; text-align: left; margin-top: 5px; padding-left: 10px; }
 
-        @media (max-width: 500px) {
-            .glass-card { padding: 30px 20px; margin: 20px; }
-            .blob { opacity: 0.8; }
+        .apple-input-icon {
+            color: var(--color-steel);
+            font-size: 14px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .apple-input-group input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            padding: 10px 0;
+            font-family: var(--font-sf-pro);
+            font-size: 14px;
+            letter-spacing: -0.224px;
+            color: var(--color-ink);
+            outline: none;
+        }
+
+        .apple-input-group input::placeholder {
+            color: var(--color-steel);
+        }
+
+        .error-msg {
+            color: #d70015;
+            font-size: 12px;
+            letter-spacing: -0.12px;
+            text-align: left;
+            margin-top: -10px;
+            margin-bottom: 14px;
+            padding-left: 18px;
+        }
+
+        .remember-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            letter-spacing: -0.15px;
+        }
+
+        .form-check-input {
+            border-radius: 4px;
+            border-color: var(--color-steel);
+            margin-top: 0.15rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--color-pricing-blue);
+            border-color: var(--color-pricing-blue);
+        }
+
+        .form-check-label {
+            color: var(--color-slate);
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .btn-pricing-blue {
+            background-color: var(--color-pricing-blue);
+            color: var(--color-gallery-white);
+            border: none;
+            border-radius: var(--radius-buttons);
+            padding: 12px 24px;
+            font-family: var(--font-sf-pro);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: -0.12px;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-pricing-blue:hover {
+            background-color: #0077ed;
+            color: var(--color-gallery-white);
+        }
+
+        .btn-pricing-blue:active {
+            transform: scale(0.99);
+        }
+
+        .footer-links {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-hairline-silver);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .apple-link {
+            color: var(--color-apple-blue);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: -0.15px;
+            transition: color 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .apple-link:hover {
+            color: #0055b3;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 36px 24px 28px;
+                border-radius: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="grid-overlay"></div>
 
-    <div class="ambient-light">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
-    <div class="glass-card">
+    <div class="login-card">
         
-        <div class="logo-container">
-            <i class="fas fa-rocket"></i>
+        <div class="apple-id-icon">
+            <i class="fas fa-lock"></i>
         </div>
 
-        <h4>Welcome Admin</h4>
-        <p class="subtitle">Enter your credentials to access the dashboard</p>
+        <h1 class="login-title">Admin Console</h1>
+        <p class="login-subtitle">Masuk dengan kredensial administrator untuk mengelola data portofolio.</p>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="mb-4">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus value="{{ old('email') }}" autocomplete="off">
+            <div>
+                <div class="apple-input-group">
+                    <span class="apple-input-icon"><i class="fas fa-envelope"></i></span>
+                    <input type="email" name="email" placeholder="Email Administrator" required autofocus value="{{ old('email') }}" autocomplete="username">
                 </div>
                 @error('email')
-                    <div class="error-msg"><i class="fas fa-exclamation-circle me-1"></i> {{ $message }}</div>
+                    <div class="error-msg"><i class="fas fa-circle-exclamation me-1"></i> {{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="mb-4">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <div>
+                <div class="apple-input-group">
+                    <span class="apple-input-icon"><i class="fas fa-key"></i></span>
+                    <input type="password" name="password" placeholder="Kata Sandi" required autocomplete="current-password">
                 </div>
                 @error('password')
-                    <div class="error-msg"><i class="fas fa-exclamation-circle me-1"></i> {{ $message }}</div>
+                    <div class="error-msg"><i class="fas fa-circle-exclamation me-1"></i> {{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div class="form-check">
+            <div class="remember-section">
+                <div class="form-check m-0">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember_me">
-                    <label class="form-check-label" for="remember_me">Remember Me</label>
+                    <label class="form-check-label" for="remember_me">Ingat saya</label>
                 </div>
                 @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="forgot-link">Forgot Password?</a>
+                    <a href="{{ route('password.request') }}" class="apple-link" style="font-size: 12px;">Lupa Sandi?</a>
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-glow">
-                SIGN IN <i class="fas fa-arrow-right ms-2"></i>
+            <button type="submit" class="btn-pricing-blue">
+                <span>Masuk ke Dashboard</span>
+                <i class="fas fa-arrow-right" style="font-size: 12px;"></i>
             </button>
 
         </form>
 
-        <a href="/" class="back-link">
-            <i class="fas fa-chevron-left me-1"></i> Back to Homepage
-        </a>
+        </div>
 
     </div>
 

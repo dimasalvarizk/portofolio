@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Certification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CertificationController extends Controller
 {
@@ -40,6 +41,9 @@ class CertificationController extends Controller
 
         Certification::create($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+
         return redirect()->route('admin.certifications.index')->with('success', 'Sertifikasi berhasil ditambahkan!');
     }
 
@@ -66,6 +70,9 @@ class CertificationController extends Controller
 
         $certification->update($validated);
 
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+
         return redirect()->route('admin.certifications.index')->with('success', 'Sertifikasi berhasil diperbarui!');
     }
 
@@ -75,6 +82,10 @@ class CertificationController extends Controller
     public function destroy(Certification $certification)
     {
         $certification->delete();
+
+        // Invalidate Cache Real-Time
+        Cache::forget('portfolio_data');
+
         return redirect()->route('admin.certifications.index')->with('success', 'Sertifikasi berhasil dihapus!');
     }
 }
