@@ -568,7 +568,7 @@
         }
 
         /* --------------------------------------------------------------------------
-           APPLE INTELLIGENCE CHATBOT WIDGET
+           APPLE INTELLIGENCE CHATBOT WIDGET (Clean Minimalist Apple Design)
            -------------------------------------------------------------------------- */
         .apple-ai-trigger-wrap {
             position: fixed;
@@ -578,87 +578,54 @@
         }
 
         .apple-ai-trigger {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.95);
             color: var(--color-ink);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--color-hairline-silver);
             border-radius: var(--radius-pills);
-            padding: 6px 16px 6px 6px;
+            padding: 8px 18px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             cursor: pointer;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 113, 227, 0.15);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
+            font-size: 13px;
+            font-weight: 600;
         }
 
         .apple-ai-trigger:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 14px 36px rgba(0, 113, 227, 0.25), 0 0 0 1.5px var(--color-pricing-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-pricing-blue);
         }
 
-        .apple-ai-icon-circle {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #0071e3 0%, #6e56cf 50%, #ec4899 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.35);
-            flex-shrink: 0;
-        }
-
-        .apple-ai-pulse {
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #0071e3, #6e56cf, #ec4899);
-            opacity: 0.45;
-            animation: aiPulse 2.5s infinite;
-            z-index: -1;
-        }
-
-        @keyframes aiPulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-
-        .apple-ai-trigger-text {
-            text-align: left;
-            user-select: none;
-        }
-
-        .apple-ai-trigger-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--color-ink);
-            line-height: 1.2;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .apple-ai-status-dot {
-            width: 7px;
-            height: 7px;
+        .apple-ai-live-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background-color: #34c759;
-            display: inline-block;
             box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.25);
+            display: inline-block;
+            flex-shrink: 0;
+            animation: liveDotPulse 2s infinite;
         }
 
-        .apple-ai-trigger-sub {
-            font-size: 11px;
-            color: var(--color-slate);
-            line-height: 1.1;
+        @keyframes liveDotPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .apple-ai-trigger-badge {
+            background-color: var(--color-pricing-blue);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            letter-spacing: 0.03em;
         }
 
         .apple-ai-window {
@@ -673,7 +640,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.14);
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
             z-index: 1040;
             opacity: 0;
             transform: translateY(20px) scale(0.95);
@@ -704,6 +671,21 @@
             flex-direction: column;
             gap: 12px;
             background-color: var(--color-gallery-white);
+            scrollbar-width: thin;
+            scrollbar-color: #d1d1d6 transparent;
+        }
+
+        .apple-ai-body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .apple-ai-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .apple-ai-body::-webkit-scrollbar-thumb {
+            background-color: #d1d1d6;
+            border-radius: 10px;
         }
 
         .chat-bubble-ai {
@@ -735,14 +717,15 @@
             flex-direction: column;
             gap: 6px;
             margin-top: 4px;
+            transition: opacity 0.2s ease, max-height 0.3s ease;
         }
 
         .quick-prompt-chip {
-            background-color: #ffffff;
+            background-color: var(--color-studio-mist);
             border: 1px solid var(--color-border-card);
             border-radius: 12px;
-            padding: 8px 12px;
-            font-size: 12px;
+            padding: 10px 14px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--color-ink);
             cursor: pointer;
@@ -753,11 +736,80 @@
             justify-content: space-between;
         }
 
+        .quick-prompt-chip .chip-chevron {
+            color: var(--color-steel);
+            font-size: 16px;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
         .quick-prompt-chip:hover {
-            background-color: var(--color-studio-mist);
+            background-color: #ffffff;
             border-color: var(--color-pricing-blue);
             color: var(--color-pricing-blue);
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.08);
+        }
+
+        .quick-prompt-chip:hover .chip-chevron {
+            color: var(--color-pricing-blue);
             transform: translateX(2px);
+        }
+
+        .apple-ai-input-wrap {
+            padding: 12px 16px;
+            background-color: var(--color-gallery-white);
+            border-top: 1px solid var(--color-border-card);
+        }
+
+        .apple-ai-input-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--color-studio-mist);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-pills);
+            padding: 4px 6px 4px 14px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .apple-ai-input-box:focus-within {
+            border-color: var(--color-pricing-blue);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12);
+        }
+
+        .apple-ai-text-input {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            color: var(--color-ink);
+            outline: none;
+            padding: 6px 0;
+            font-family: inherit;
+        }
+
+        .apple-ai-text-input::placeholder {
+            color: var(--color-slate);
+        }
+
+        .apple-ai-send-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--color-pricing-blue);
+            color: #ffffff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s ease, background-color 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .apple-ai-send-btn:hover {
+            background-color: var(--color-apple-blue);
+            transform: scale(1.05);
         }
 
         .typing-dots {
@@ -787,7 +839,6 @@
         }
 
         @media (max-width: 576px) {
-            .apple-ai-trigger-sub { display: none; }
             .apple-ai-trigger-wrap { right: 15px; bottom: 20px; }
             .apple-ai-window {
                 right: 15px;
@@ -873,7 +924,7 @@
         <section class="apple-hero-section" data-aos="fade-up">
             <div class="apple-hero-container">
                 <div class="apple-kicker">
-                    {{ $settings['hero_kicker'] ?? 'Baru • Full-Stack Developer & Software Engineer' }}
+                    {{ $settings['hero_kicker'] ?? 'Full-Stack Developer & Software Engineer' }}
                 </div>
 
                 <h1 class="apple-hero-headline">
@@ -983,13 +1034,6 @@
                                 <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
                                     <span class="apple-body-muted">Prestasi Akademik</span>
                                     <span class="fw-semibold text-dark" style="font-size: 14px;">GPA {{ $settings['about_gpa'] ?? '3.76' }} / 4.00</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center py-2">
-                                    <span class="apple-body-muted">Status Kerja</span>
-                                    <span class="fw-semibold text-success d-flex align-items-center gap-1" style="font-size: 14px;">
-                                        <span class="d-inline-block rounded-circle bg-success" style="width: 6px; height: 6px;"></span>
-                                        Open for Hire
-                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -1323,48 +1367,20 @@
 
     <!-- 10. APPLE INTELLIGENCE CHATBOT WIDGET -->
     <div class="apple-ai-trigger-wrap">
-        <button class="apple-ai-trigger" id="chat-widget-toggle" title="Chat dengan DimasBot AI" type="button" aria-label="Buka Asisten AI">
-            <div class="apple-ai-icon-circle">
-                <div class="apple-ai-pulse"></div>
-                <!-- Crisp Inline SVG Robot Icon -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="3" y="6" width="18" height="13" rx="4" fill="rgba(255,255,255,0.25)" stroke="#ffffff" stroke-width="1.8"/>
-                    <circle cx="8.5" cy="11.5" r="1.5" fill="#ffffff"/>
-                    <circle cx="15.5" cy="11.5" r="1.5" fill="#ffffff"/>
-                    <path d="M9 15.5C10 16.5 14 16.5 15 15.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M12 2V6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-                    <circle cx="12" cy="2.5" r="1.5" fill="#ffffff"/>
-                </svg>
-            </div>
-            <div class="apple-ai-trigger-text">
-                <div class="apple-ai-trigger-title">
-                    DimasBot AI
-                    <span class="apple-ai-status-dot"></span>
-                </div>
-                <div class="apple-ai-trigger-sub">Asisten Pintar</div>
-            </div>
+        <button class="apple-ai-trigger" id="chat-widget-toggle" title="Buka Asisten DimasBot" type="button" aria-label="Buka Chat AI">
+            <span class="apple-ai-live-dot"></span>
+            <span>DimasBot</span>
+            <span class="apple-ai-trigger-badge">AI</span>
         </button>
     </div>
 
     <div class="apple-ai-window" id="chat-widget-window">
         <div class="apple-ai-header">
             <div class="d-flex align-items-center gap-2">
-                <div class="apple-ai-icon-circle" style="width: 34px; height: 34px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3" y="6" width="18" height="13" rx="4" fill="rgba(255,255,255,0.25)" stroke="#ffffff" stroke-width="1.8"/>
-                        <circle cx="8.5" cy="11.5" r="1.5" fill="#ffffff"/>
-                        <circle cx="15.5" cy="11.5" r="1.5" fill="#ffffff"/>
-                        <path d="M9 15.5C10 16.5 14 16.5 15 15.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-                        <path d="M12 2V6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-                        <circle cx="12" cy="2.5" r="1.5" fill="#ffffff"/>
-                    </svg>
-                </div>
+                <span class="apple-ai-live-dot"></span>
                 <div>
-                    <div style="font-size: 14px; font-weight: 600; color: var(--color-ink);">DimasBot Intelligence</div>
-                    <div class="d-flex align-items-center gap-1">
-                        <span class="apple-ai-status-dot" style="width: 6px; height: 6px;"></span>
-                        <span style="font-size: 11px; color: var(--color-slate);">Aktif • AI Portfolio</span>
-                    </div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-ink); line-height: 1.2;">DimasBot Intelligence</div>
+                    <div style="font-size: 11px; color: var(--color-slate);">Asisten Portofolio</div>
                 </div>
             </div>
             <button class="btn-close" id="chat-widget-close" aria-label="Tutup"></button>
@@ -1372,26 +1388,26 @@
 
         <div class="apple-ai-body" id="aiChatBody">
             <div class="chat-bubble-ai" id="bot-welcome-msg">
-                Halo! Saya asisten virtual portofolio <strong>Dimas Alva Rizki</strong>. Ada yang ingin Anda tanyakan seputar pengalaman, keahlian, atau kolaborasi proyek?
+                Halo! Saya asisten virtual portofolio <strong>Dimas Alva Rizki</strong>. Ada yang ingin Anda tanyakan seputar keahlian, riwayat proyek, atau peluang kerja sama?
             </div>
 
-            <!-- Quick Action Prompts -->
+            <!-- Quick Action Prompts (Clean Typography Without Icons) -->
             <div class="apple-quick-prompts" id="quickPromptsContainer">
                 <button type="button" class="quick-prompt-chip" onclick="sendQuickPrompt('Apa keahlian dan teknologi utama yang dikuasai Dimas?')">
-                    <span>⚡ Keahlian & Tech Stack</span>
-                    <span style="color: var(--color-steel);">›</span>
+                    <span>Keahlian & Tech Stack</span>
+                    <span class="chip-chevron">›</span>
                 </button>
                 <button type="button" class="quick-prompt-chip" onclick="sendQuickPrompt('Ceritakan tentang proyek-proyek unggulan buatan Dimas.')">
-                    <span>🚀 Proyek Unggulan</span>
-                    <span style="color: var(--color-steel);">›</span>
+                    <span>Proyek Unggulan</span>
+                    <span class="chip-chevron">›</span>
                 </button>
                 <button type="button" class="quick-prompt-chip" onclick="sendQuickPrompt('Bagaimana riwayat pendidikan dan pencapaian akademik Dimas?')">
-                    <span>🎓 IPK & Pendidikan</span>
-                    <span style="color: var(--color-steel);">›</span>
+                    <span>Riwayat Pendidikan & IPK</span>
+                    <span class="chip-chevron">›</span>
                 </button>
                 <button type="button" class="quick-prompt-chip" onclick="sendQuickPrompt('Bagaimana cara berdiskusi atau memulai kolaborasi proyek dengan Dimas?')">
-                    <span>📬 Cara Kolaborasi</span>
-                    <span style="color: var(--color-steel);">›</span>
+                    <span>Kolaborasi & Kontak</span>
+                    <span class="chip-chevron">›</span>
                 </button>
             </div>
 
@@ -1400,11 +1416,11 @@
             </div>
         </div>
 
-        <div class="p-3 border-top" style="background-color: var(--color-paper-frost); border-color: var(--color-border-card) !important;">
-            <div class="d-flex gap-2">
-                <input type="text" class="apple-input-field" id="aiChatInput" placeholder="Tanyakan seputar keahlian atau projek..." style="height: 42px; font-size: 13px;">
-                <button class="btn-apple-primary px-3" id="aiChatSubmit" style="height: 42px; border-radius: 50%; width: 42px; padding: 0; display: flex; align-items: center; justify-content: center;" title="Kirim Pesan">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="apple-ai-input-wrap">
+            <div class="apple-ai-input-box">
+                <input type="text" class="apple-ai-text-input" id="aiChatInput" placeholder="Tanyakan seputar keahlian atau proyek...">
+                <button type="button" class="apple-ai-send-btn" id="aiChatSubmit" title="Kirim Pesan" aria-label="Kirim Pesan">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="19" x2="12" y2="5"></line>
                         <polyline points="5 12 12 5 19 12"></polyline>
                     </svg>
@@ -1554,6 +1570,11 @@
                 const userText = aiChatInput.value.trim();
                 if (!userText) return;
 
+                const quickPrompts = document.getElementById('quickPromptsContainer');
+                if (quickPrompts) {
+                    quickPrompts.style.display = 'none';
+                }
+
                 appendMessage(userText, 'chat-bubble-user');
                 aiChatInput.value = '';
 
@@ -1618,6 +1639,7 @@
                     sendMessage();
                 }
             };
+
         });
     </script>
 </body>
