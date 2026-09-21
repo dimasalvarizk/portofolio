@@ -23,7 +23,19 @@ class SkillController extends Controller
      */
     public function create()
     {
-        return view('admin.skills.create');
+        $defaultCategories = [
+            'Programming Languages',
+            'Frameworks & Libraries',
+            'Database & API',
+            'Tools & Platforms',
+            'Methodologies & Testing',
+            'Soft Skills',
+            'Languages',
+        ];
+        $dbCategories = Skill::pluck('category')->unique()->filter()->values()->all();
+        $categories = array_values(array_unique(array_merge($defaultCategories, $dbCategories)));
+
+        return view('admin.skills.create', compact('categories'));
     }
 
     /**
@@ -51,7 +63,19 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        return view('admin.skills.edit', compact('skill'));
+        $defaultCategories = [
+            'Programming Languages',
+            'Frameworks & Libraries',
+            'Database & API',
+            'Tools & Platforms',
+            'Methodologies & Testing',
+            'Soft Skills',
+            'Languages',
+        ];
+        $dbCategories = Skill::pluck('category')->unique()->filter()->values()->all();
+        $categories = array_values(array_unique(array_merge($defaultCategories, $dbCategories)));
+
+        return view('admin.skills.edit', compact('skill', 'categories'));
     }
 
     /**
