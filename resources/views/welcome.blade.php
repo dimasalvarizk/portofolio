@@ -16,12 +16,12 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} — Full Stack Developer">
     <meta property="og:description" content="{{ $settings['about_bio'] ?? 'Portofolio Full Stack Developer Dimas Alva Rizki. Rekayasa perangkat lunak modern, arsitektur handal, dan desain interaktif berkelas dunia.' }}">
-    <meta property="og:image" content="{{ asset('assets/dimas.png') }}">
+    <meta property="og:image" content="{{ asset('assets/dimasdimas.png') }}">
     <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} Portfolio">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} — Full Stack Developer">
     <meta name="twitter:description" content="{{ $settings['about_bio'] ?? 'Portofolio Full Stack Developer Dimas Alva Rizki. Rekayasa perangkat lunak modern, arsitektur handal, dan desain interaktif berkelas dunia.' }}">
-    <meta name="twitter:image" content="{{ asset('assets/dimas.png') }}">
+    <meta name="twitter:image" content="{{ asset('assets/dimasdimas.png') }}">
 
     <link rel="icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
 
@@ -813,8 +813,7 @@
                     </div>
 
                     <picture>
-                        <source srcset="{{ asset('assets/dimas.webp') }}" type="image/webp">
-                        <img src="{{ asset('assets/dimas.png') }}" alt="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}" class="apple-hero-edgefree-img" fetchpriority="high">
+                        <img src="{{ asset('assets/dimasdimas.png') }}" alt="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}" class="apple-hero-edgefree-img" fetchpriority="high">
                     </picture>
                 </div>
             </div>
