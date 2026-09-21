@@ -423,6 +423,36 @@
             color: #0055b3;
             text-decoration: underline;
         }
+
+        /* --- RESPONSIVE OPTIMIZATIONS --- */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: saturate(180%) blur(20px);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                border: 1px solid var(--color-hairline-silver);
+                border-radius: 18px;
+                padding: 16px;
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            }
+            .nav-link-apple {
+                padding: 10px 14px !important;
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header-title {
+                font-size: 22px;
+            }
+            .glass-card, .apple-card {
+                border-radius: 20px !important;
+            }
+            .table tbody td, .table thead th {
+                padding: 12px 14px !important;
+                font-size: 13px !important;
+            }
+        }
     </style>
     @yield('styles')
 </head>

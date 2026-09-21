@@ -393,10 +393,46 @@
 
         @media (max-width: 768px) {
             .apple-carousel-slide {
-                height: 300px;
+                height: 280px;
             }
             .description-card {
-                padding: 28px 20px;
+                padding: 24px 18px;
+                border-radius: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .apple-floating-nav-wrapper {
+                top: 10px;
+                padding: 0 10px;
+            }
+            .apple-floating-nav {
+                height: 48px;
+                padding: 0 12px;
+                border-radius: 16px;
+            }
+            .apple-floating-nav-title {
+                font-size: 14px;
+                max-width: 140px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .btn-pricing-blue-pill, .btn-explore-pill {
+                padding: 5px 12px;
+                font-size: 11px;
+            }
+            .apple-carousel-slide {
+                height: 220px;
+            }
+            .apple-carousel-arrow {
+                width: 34px;
+                height: 34px;
+                font-size: 12px;
+            }
+            main {
+                padding-top: 75px !important;
+                padding-bottom: 50px !important;
             }
         }
     </style>

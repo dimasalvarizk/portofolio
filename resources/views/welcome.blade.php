@@ -1161,14 +1161,159 @@
             40% { transform: scale(1); }
         }
 
+        /* --------------------------------------------------------------------------
+           MOBILE MENU & ADVANCED RESPONSIVENESS
+           -------------------------------------------------------------------------- */
+        .btn-mobile-nav-toggle {
+            background: transparent;
+            border: 1px solid var(--color-hairline-silver);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-ink);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 13px;
+        }
+
+        .btn-mobile-nav-toggle:hover {
+            background: var(--color-studio-mist);
+            border-color: var(--color-slate);
+        }
+
+        .apple-mobile-menu-drawer {
+            position: absolute;
+            top: 64px;
+            left: 16px;
+            right: 16px;
+            max-width: 980px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: saturate(180%) blur(25px);
+            -webkit-backdrop-filter: saturate(180%) blur(25px);
+            border: 1px solid var(--color-hairline-silver);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 1049;
+        }
+
+        .apple-mobile-menu-drawer.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .apple-mobile-menu-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .apple-mobile-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .apple-mobile-link:hover, .apple-mobile-link:active {
+            background-color: var(--color-studio-mist);
+            color: var(--color-pricing-blue);
+        }
+
+        .apple-mobile-link span {
+            color: var(--color-slate);
+            font-size: 16px;
+        }
+
+        /* Horizontal Scrollable Pills for Mobile (Filters & Tags) */
+        .apple-filter-scroll-wrap {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 6px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .apple-filter-scroll-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Full Responsive Breakpoint Rules */
+        @media (max-width: 991px) {
+            .apple-floating-nav-links { display: none !important; }
+            .apple-hero-section { padding-top: 100px; }
+            .apple-section-white, .apple-section-mist { padding: 75px 0; }
+        }
+
+        @media (max-width: 768px) {
+            .apple-hero-section { padding: 90px 16px 0; }
+            .apple-section-white, .apple-section-mist { padding: 55px 0; }
+            .apple-hero-edgefree-img { max-height: 380px; }
+            .apple-card-white, .apple-tech-card { border-radius: 20px; padding: 24px 20px; }
+            .apple-section-headline { font-size: clamp(24px, 5.5vw, 36px); }
+            .stat-col-divider { margin-bottom: 12px; }
+        }
+
         @media (max-width: 576px) {
-            .apple-ai-trigger-wrap { right: 15px; bottom: 20px; }
+            .apple-floating-nav-wrapper { top: 10px; padding: 0 10px; }
+            .apple-floating-nav { height: 48px; padding: 0 12px; border-radius: 16px; }
+            .apple-floating-nav-title { font-size: 15px; max-width: 130px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .btn-pricing-blue-pill, .btn-explore-pill { padding: 5px 12px; font-size: 11px; }
+            .apple-mobile-menu-drawer { top: 58px; left: 10px; right: 10px; padding: 12px; }
+            
+            .apple-hero-section { padding: 75px 12px 0; }
+            .apple-hero-headline { font-size: clamp(19px, 5.8vw, 28px); }
+            .apple-lead-text { font-size: 14px; line-height: 1.5; }
+            .apple-stats-bar { padding: 24px 0; }
+            .stat-number { font-size: 24px; min-height: 32px; }
+            .stat-label { font-size: 10px; }
+
+            .apple-wa-pill {
+                bottom: 16px;
+                left: 12px;
+                padding: 8px 14px;
+                font-size: 12px;
+                box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+            }
+
+            .apple-ai-trigger-wrap {
+                right: 12px;
+                bottom: 16px;
+            }
+
+            .apple-ai-trigger {
+                height: 40px;
+                padding: 0 14px;
+                font-size: 12px;
+            }
+
             .apple-ai-window {
-                right: 15px;
-                left: 15px;
+                right: 10px;
+                left: 10px;
+                bottom: 66px;
                 width: auto;
-                bottom: 80px;
-                height: 480px;
+                max-width: calc(100vw - 20px);
+                height: calc(100dvh - 85px);
+                max-height: 520px;
+                border-radius: 20px;
             }
         }
 
@@ -1215,7 +1360,8 @@
                 <span>{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}</span>
             </a>
 
-            <nav class="apple-floating-nav-links d-none d-md-flex">
+            <!-- Desktop Links -->
+            <nav class="apple-floating-nav-links d-none d-lg-flex">
                 <a href="#about" class="apple-floating-nav-link">Tentang</a>
                 <a href="#skills" class="apple-floating-nav-link">Keahlian</a>
                 <a href="#experience" class="apple-floating-nav-link">Pengalaman</a>
@@ -1226,20 +1372,48 @@
 
             <div class="d-flex align-items-center gap-2">
                 @if(isset($settings['cv_link']) && $settings['cv_link'] !== '#')
-                    <a href="{{ asset('storage/' . $settings['cv_link']) }}" download class="btn-explore-pill">
+                    <a href="{{ asset('storage/' . $settings['cv_link']) }}" download class="btn-explore-pill d-none d-sm-inline-flex">
                         Explore
                     </a>
                 @else
-                    <a href="#about" class="btn-explore-pill">
+                    <a href="#about" class="btn-explore-pill d-none d-sm-inline-flex">
                         Explore
                     </a>
                 @endif
 
                 <a href="#contact" class="btn-pricing-blue-pill">
-                    View pricing
+                    <span class="d-none d-sm-inline">View pricing</span>
+                    <span class="d-inline d-sm-none">Kontak</span>
                 </a>
+
+                <!-- Mobile Menu Button (< 992px) -->
+                <button type="button" class="btn-mobile-nav-toggle d-lg-none" id="mobileNavToggle" aria-label="Buka Menu Navigasi">
+                    <i class="fas fa-bars" id="mobileNavIcon"></i>
+                </button>
             </div>
         </header>
+
+        <!-- Mobile Floating Menu Dropdown -->
+        <div class="apple-mobile-menu-drawer" id="mobileNavDrawer">
+            <div class="apple-mobile-menu-inner">
+                <a href="#about" class="apple-mobile-link" onclick="closeMobileMenu()">Tentang Dimas <span>›</span></a>
+                <a href="#skills" class="apple-mobile-link" onclick="closeMobileMenu()">Keahlian & Tech Stack <span>›</span></a>
+                <a href="#experience" class="apple-mobile-link" onclick="closeMobileMenu()">Pengalaman & Pendidikan <span>›</span></a>
+                <a href="#certifications" class="apple-mobile-link" onclick="closeMobileMenu()">Sertifikasi Profesional <span>›</span></a>
+                <a href="#projects" class="apple-mobile-link" onclick="closeMobileMenu()">Karya & Portofolio <span>›</span></a>
+                <a href="#contact" class="apple-mobile-link" onclick="closeMobileMenu()">Hubungi Dimas <span>›</span></a>
+                <div class="pt-2 border-top mt-2 d-flex gap-2">
+                    @if(isset($settings['cv_link']) && $settings['cv_link'] !== '#')
+                        <a href="{{ asset('storage/' . $settings['cv_link']) }}" download class="btn-explore-pill w-100 text-center py-2" onclick="closeMobileMenu()">
+                            Unduh CV
+                        </a>
+                    @endif
+                    <a href="#contact" class="btn-pricing-blue-pill w-100 text-center py-2" onclick="closeMobileMenu()">
+                        Mulai Projek
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <main id="home">
@@ -1557,8 +1731,8 @@
                     @endif
                 </div>
 
-                <!-- Filter Controls -->
-                <div class="d-flex flex-wrap gap-2 mb-5">
+                <!-- Filter Controls (Horizontally Scrollable on Mobile) -->
+                <div class="apple-filter-scroll-wrap mb-4 mb-md-5">
                     <button class="apple-filter-btn active" data-filter="all">Semua</button>
                     @php
                         $categories = collect($projects)->pluck('category')->unique()->filter()->values();
@@ -1856,6 +2030,34 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof AOS !== 'undefined') {
                 AOS.init({ once: true, offset: 30, duration: 600 });
+            }
+
+            // Mobile Menu Toggle & Click Outside Handler
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+            const mobileNavIcon = document.getElementById('mobileNavIcon');
+
+            window.closeMobileMenu = function() {
+                if (mobileNavDrawer) {
+                    mobileNavDrawer.classList.remove('open');
+                    if (mobileNavIcon) mobileNavIcon.className = 'fas fa-bars';
+                }
+            };
+
+            if (mobileNavToggle && mobileNavDrawer) {
+                mobileNavToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = mobileNavDrawer.classList.toggle('open');
+                    if (mobileNavIcon) {
+                        mobileNavIcon.className = isOpen ? 'fas fa-xmark' : 'fas fa-bars';
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (mobileNavDrawer.classList.contains('open') && !mobileNavDrawer.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+                        closeMobileMenu();
+                    }
+                });
             }
 
             // Project Filter Logic
