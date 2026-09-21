@@ -33,7 +33,7 @@
                                 </option>
                             @endforeach
                             <option value="__NEW__" {{ (!in_array(old('category', $skill->category), $categories) && old('category', $skill->category) != '') ? 'selected' : '' }}>
-                                ✍️ + Tambah Kategori Baru (Ketik Manual)...
+                                + Tambah Kategori Baru (Ketik Manual)...
                             </option>
                         </select>
                         <input type="text" class="form-control mt-2" id="customCategoryInput" name="category" 
