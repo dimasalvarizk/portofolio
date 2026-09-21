@@ -221,12 +221,64 @@
         }
 
         .apple-hero-headline {
-            font-size: clamp(38px, 6vw, 76px);
+            font-size: clamp(36px, 5.5vw, 72px);
             font-weight: 700;
-            line-height: 1.06;
+            line-height: 1.08;
             letter-spacing: -0.035em;
             color: var(--color-ink);
             margin-bottom: 20px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .apple-rotating-role {
+            display: inline-block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            will-change: transform, opacity;
+            background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3c 70%, #0071e3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .apple-hero-ticker-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            margin: 24px 0 32px;
+            padding: 12px 0;
+            background: linear-gradient(90deg, transparent, rgba(245, 245, 247, 0.9) 15%, rgba(245, 245, 247, 0.9) 85%, transparent);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        }
+
+        .apple-hero-ticker-track {
+            display: inline-flex;
+            gap: 28px;
+            animation: tickerSlideToRight 28s linear infinite;
+        }
+
+        .apple-hero-ticker-item {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-slate);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 28px;
+            white-space: nowrap;
+        }
+
+        .apple-hero-ticker-item .bullet {
+            color: var(--color-pricing-blue);
+            font-size: 14px;
+        }
+
+        @keyframes tickerSlideToRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
 
         .apple-section-headline {
@@ -928,12 +980,46 @@
                 </div>
 
                 <h1 class="apple-hero-headline">
-                    {{ $settings['hero_title'] ?? 'Full Stack Web Developer' }}
+                    <span class="apple-rotating-role" id="heroAnimatedRole">{{ $settings['hero_title'] ?? 'Full Stack Web Developer' }}</span>
                 </h1>
 
-                <p class="apple-lead-text mx-auto mb-4" style="max-width: 640px;">
+                <p class="apple-lead-text mx-auto mb-3" style="max-width: 640px;">
                     Mengembangkan aplikasi web modern berkinerja tinggi, arsitektur modular yang tangguh, dan integrasi sistem cerdas.
                 </p>
+
+                <!-- Kinetic Marquee Track Running Continuously to the Right -->
+                <div class="apple-hero-ticker-wrap">
+                    <div class="apple-hero-ticker-track">
+                        <div class="apple-hero-ticker-item">
+                            <span>Full Stack Web Developer</span>
+                            <span class="bullet">•</span>
+                            <span>Software Engineer</span>
+                            <span class="bullet">•</span>
+                            <span>Backend Architect</span>
+                            <span class="bullet">•</span>
+                            <span>Laravel & PHP Specialist</span>
+                            <span class="bullet">•</span>
+                            <span>Next.js & Frontend Engineer</span>
+                            <span class="bullet">•</span>
+                            <span>Database & RESTful API</span>
+                            <span class="bullet">•</span>
+                        </div>
+                        <div class="apple-hero-ticker-item" aria-hidden="true">
+                            <span>Full Stack Web Developer</span>
+                            <span class="bullet">•</span>
+                            <span>Software Engineer</span>
+                            <span class="bullet">•</span>
+                            <span>Backend Architect</span>
+                            <span class="bullet">•</span>
+                            <span>Laravel & PHP Specialist</span>
+                            <span class="bullet">•</span>
+                            <span>Next.js & Frontend Engineer</span>
+                            <span class="bullet">•</span>
+                            <span>Database & RESTful API</span>
+                            <span class="bullet">•</span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap mb-4">
                     <a href="#projects" class="btn-pricing-blue-pill py-2 px-4" style="font-size: 14px; font-weight: 500;">
@@ -1635,6 +1721,39 @@
                     sendMessage();
                 }
             };
+
+            // Animated Hero Role Slider (Smooth Right Sliding Motion)
+            const heroRoles = [
+                "Full Stack Web Developer",
+                "Software Engineer",
+                "Laravel & PHP Specialist",
+                "Next.js & Frontend Developer",
+                "Backend & REST API Architect"
+            ];
+            let currentRoleIdx = 0;
+            const heroRoleEl = document.getElementById('heroAnimatedRole');
+
+            if (heroRoleEl) {
+                setInterval(() => {
+                    heroRoleEl.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease';
+                    heroRoleEl.style.transform = 'translateX(60px)';
+                    heroRoleEl.style.opacity = '0';
+
+                    setTimeout(() => {
+                        currentRoleIdx = (currentRoleIdx + 1) % heroRoles.length;
+                        heroRoleEl.textContent = heroRoles[currentRoleIdx];
+                        heroRoleEl.style.transition = 'none';
+                        heroRoleEl.style.transform = 'translateX(-60px)';
+                        heroRoleEl.style.opacity = '0';
+
+                        setTimeout(() => {
+                            heroRoleEl.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease';
+                            heroRoleEl.style.transform = 'translateX(0)';
+                            heroRoleEl.style.opacity = '1';
+                        }, 50);
+                    }, 400);
+                }, 3400);
+            }
 
         });
     </script>
