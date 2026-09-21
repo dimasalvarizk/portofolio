@@ -574,25 +574,26 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 52px;
-            height: 52px;
-            background-color: var(--color-gallery-white);
-            border: 1px solid var(--color-border-card);
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, #0071e3 0%, #0099ff 100%);
+            color: #ffffff !important;
+            border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 113, 227, 0.35);
             z-index: 1050;
-            color: var(--color-pricing-blue);
-            font-size: 20px;
+            font-size: 22px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .apple-ai-trigger:hover {
             transform: scale(1.08);
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 30px rgba(0, 113, 227, 0.45);
+            color: #ffffff !important;
         }
 
         .apple-ai-window {
@@ -1215,13 +1216,13 @@
 
     <!-- 10. APPLE INTELLIGENCE CHATBOT WIDGET -->
     <button class="apple-ai-trigger" id="chat-widget-toggle" title="Chat dengan DimasBot AI">
-        <i class="fas fa-sparkles"></i>
+        <i class="fas fa-robot"></i>
     </button>
 
     <div class="apple-ai-window" id="chat-widget-window">
         <div class="apple-ai-header">
             <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-sparkles text-primary"></i>
+                <i class="fas fa-robot text-primary" style="font-size: 18px; color: var(--color-pricing-blue) !important;"></i>
                 <div>
                     <div style="font-size: 14px; font-weight: 600; color: var(--color-ink);">DimasBot Intelligence</div>
                     <div class="apple-kicker mb-0" style="font-size: 10px;">Asisten Portofolio</div>
