@@ -487,7 +487,23 @@
             background-color: var(--color-studio-mist);
             border-top: 1px solid var(--color-border-card);
             border-bottom: 1px solid var(--color-border-card);
-            padding: 36px 0;
+            padding: 38px 0;
+        }
+
+        .stat-col-divider {
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .stat-col-divider:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 15%;
+                height: 70%;
+                width: 1px;
+                background-color: var(--color-border-card);
+            }
         }
 
         .stat-number {
@@ -496,6 +512,10 @@
             letter-spacing: -0.03em;
             color: var(--color-ink);
             line-height: 1.1;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .stat-label {
@@ -504,7 +524,54 @@
             color: var(--color-slate);
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            margin-top: 4px;
+            margin-top: 6px;
+        }
+
+        .apple-status-pill {
+            background-color: rgba(255, 255, 255, 0.92);
+            border: 1px solid var(--color-hairline-silver);
+            padding: 6px 16px;
+            border-radius: var(--radius-pills);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-ink);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            margin-bottom: 14px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .apple-status-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .apple-status-dot-pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #34c759;
+            box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.25);
+            display: inline-block;
+            flex-shrink: 0;
+            animation: liveDotPulse 2s infinite ease-in-out;
+        }
+
+        .apple-status-chip-inline {
+            background-color: rgba(52, 199, 89, 0.1);
+            color: #1b7a37;
+            border: 1px solid rgba(52, 199, 89, 0.25);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: var(--radius-pills);
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
         }
 
         .apple-section-white {
@@ -1005,6 +1072,13 @@
         <!-- 2. HERO SHOWCASE STAGE -->
         <section class="apple-hero-section" data-aos="fade-up">
             <div class="apple-hero-container">
+                <div class="d-flex justify-content-center">
+                    <div class="apple-status-pill">
+                        <span class="apple-status-dot-pulse"></span>
+                        <span>Tersedia untuk Kolaborasi & Proyek Baru</span>
+                    </div>
+                </div>
+
                 <div class="apple-kicker">
                     {{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }} • Software Engineer
                 </div>
@@ -1095,24 +1169,21 @@
         <section class="apple-stats-bar">
             <div class="container" style="max-width: 1080px;">
                 <div class="row g-4 text-center">
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-3 stat-col-divider">
                         <div class="stat-number">{{ $settings['about_gpa'] ?? '3.76' }}</div>
-                        <div class="stat-label">IPK Kumulatif</div>
+                        <div class="stat-label">IPK Kumulatif (4.0)</div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-number d-flex align-items-center justify-content-center gap-2">
-                            <span class="d-inline-block rounded-circle bg-success" style="width: 9px; height: 9px; box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.25);"></span>
-                            <span>Tersedia</span>
-                        </div>
-                        <div class="stat-label">Status Kolaborasi</div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-number">{{ count($projects) }}+</div>
+                    <div class="col-6 col-md-3 stat-col-divider">
+                        <div class="stat-number">{{ count($projects) > 0 ? count($projects) : '10' }}+</div>
                         <div class="stat-label">Projek Selesai</div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-number">{{ count($certifications) }}</div>
+                    <div class="col-6 col-md-3 stat-col-divider">
+                        <div class="stat-number">{{ count($certifications) > 0 ? count($certifications) : '5' }}</div>
                         <div class="stat-label">Sertifikasi Resmi</div>
+                    </div>
+                    <div class="col-6 col-md-3 stat-col-divider">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Dedikasi Kualitas</div>
                     </div>
                 </div>
             </div>
@@ -1150,6 +1221,13 @@
                                 <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--color-border-card) !important;">
                                     <span class="apple-body-muted">Prestasi Akademik</span>
                                     <span class="fw-semibold text-dark" style="font-size: 14px;">GPA {{ $settings['about_gpa'] ?? '3.76' }} / 4.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center py-2">
+                                    <span class="apple-body-muted">Status Kolaborasi</span>
+                                    <span class="apple-status-chip-inline">
+                                        <span class="apple-status-dot-pulse" style="width: 6px; height: 6px;"></span>
+                                        Tersedia untuk Proyek
+                                    </span>
                                 </div>
                             </div>
                         </div>
