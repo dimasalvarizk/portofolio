@@ -334,9 +334,11 @@
         /* Hero Stage */
         .apple-hero-section {
             padding-top: 110px;
-            padding-bottom: 80px;
+            padding-bottom: 0 !important;
             background-color: var(--color-gallery-white);
             text-align: center;
+            overflow: hidden;
+            position: relative;
         }
 
         .apple-hero-container {
@@ -345,54 +347,54 @@
             padding: 0 20px;
         }
 
-        .apple-hero-visual-frame {
+        .apple-hero-stage-visual {
             position: relative;
-            max-width: 480px;
-            margin: 44px auto 0;
-            border-radius: 36px;
-            background: linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%);
-            border: 1px solid var(--color-border-card);
-            padding: 24px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.06);
+            max-width: 440px;
+            margin: 40px auto 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
 
-        .apple-hero-img {
+        .apple-hero-edgefree-img {
             width: 100%;
             height: auto;
-            border-radius: 24px;
+            max-height: 520px;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            margin-bottom: -1px;
         }
 
-        .apple-hero-floating-badge {
+        .apple-hero-floating-callout {
             position: absolute;
-            background-color: var(--color-gallery-white);
-            border: 1px solid var(--color-border-card);
-            border-radius: var(--radius-pills);
-            padding: 8px 16px;
+            bottom: 24px;
+            right: -60px;
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid var(--color-hairline-silver);
+            border-radius: var(--radius-cards);
+            padding: 12px 18px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--color-ink);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
-            white-space: nowrap;
+            gap: 16px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+            z-index: 10;
+            text-align: left;
         }
 
-        .badge-top-right {
-            top: -14px;
-            right: -14px;
-        }
-
-        .badge-bottom-left {
-            bottom: -14px;
-            left: -14px;
-        }
-
-        @media (max-width: 768px) {
-            .badge-top-right { top: -10px; right: 10px; }
-            .badge-bottom-left { bottom: -10px; left: 10px; }
+        @media (max-width: 991px) {
+            .apple-hero-floating-callout {
+                position: static;
+                margin: 20px auto 0;
+                max-width: 320px;
+                right: auto;
+                bottom: auto;
+            }
             .apple-floating-nav-links { display: none; }
         }
 
@@ -793,22 +795,27 @@
                     </a>
                 </div>
 
-                <!-- Centerpiece Developer Visual with Apple Glass Frame -->
-                <div class="apple-hero-visual-frame">
-                    <div class="apple-hero-floating-badge badge-top-right">
-                        <span class="d-inline-block rounded-circle bg-success" style="width: 8px; height: 8px;"></span>
-                        <span>Tersedia untuk Kerja Sama</span>
+                <!-- Centerpiece Developer Visual (Edge-Free, Resting Flush to the Bottom) -->
+                <div class="apple-hero-stage-visual">
+                    <div class="apple-hero-floating-callout">
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="d-inline-block rounded-circle bg-success" style="width: 8px; height: 8px;"></span>
+                                <span style="font-size: 13px; font-weight: 600; color: var(--color-ink);">Tersedia untuk Kerja Sama</span>
+                            </div>
+                            <div style="font-size: 12px; color: var(--color-slate);">
+                                IPK {{ $settings['about_gpa'] ?? '3.76' }} • Full-Stack Web Development
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn-pricing-blue-pill py-1 px-3">
+                            Hubungi ›
+                        </a>
                     </div>
 
                     <picture>
                         <source srcset="{{ asset('assets/dimas.webp') }}" type="image/webp">
-                        <img src="{{ asset('assets/dimas.png') }}" alt="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}" class="apple-hero-img" fetchpriority="high">
+                        <img src="{{ asset('assets/dimas.png') }}" alt="{{ $settings['hero_name'] ?? 'Dimas Alva Rizki' }}" class="apple-hero-edgefree-img" fetchpriority="high">
                     </picture>
-
-                    <div class="apple-hero-floating-badge badge-bottom-left">
-                        <i class="fas fa-graduation-cap text-primary"></i>
-                        <span>IPK {{ $settings['about_gpa'] ?? '3.76' }} • Informatika UMP</span>
-                    </div>
                 </div>
             </div>
         </section>
