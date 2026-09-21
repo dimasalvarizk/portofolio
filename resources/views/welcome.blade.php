@@ -223,21 +223,61 @@
         .apple-hero-headline {
             font-size: clamp(36px, 5.5vw, 72px);
             font-weight: 700;
-            line-height: 1.08;
+            line-height: 1.1;
             letter-spacing: -0.035em;
             color: var(--color-ink);
             margin-bottom: 20px;
-            overflow: hidden;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .apple-rotating-role {
+        .apple-rotator-viewport {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 1.18em;
+            overflow: hidden;
+            vertical-align: middle;
+            padding: 4px 10px;
+        }
+
+        .apple-rotator-item {
             display: inline-block;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-            will-change: transform, opacity;
-            background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3c 70%, #0071e3 100%);
+            background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3c 65%, #0071e3 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            will-change: transform, opacity, filter;
+            transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
+            white-space: nowrap;
+        }
+
+        .apple-rotator-item.slide-out-right {
+            transform: translate3d(80px, 0, 0);
+            opacity: 0;
+            filter: blur(8px);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .apple-rotator-item.slide-in-left {
+            transform: translate3d(-80px, 0, 0);
+            opacity: 0;
+            filter: blur(8px);
+            position: absolute;
+        }
+
+        .apple-rotator-item.active {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+            filter: blur(0px);
+            position: relative;
         }
 
         .apple-hero-ticker-wrap {
@@ -249,14 +289,16 @@
             background: linear-gradient(90deg, transparent, rgba(245, 245, 247, 0.9) 15%, rgba(245, 245, 247, 0.9) 85%, transparent);
             border-top: 1px solid rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent 100%);
         }
 
         .apple-hero-ticker-track {
             display: inline-flex;
             gap: 28px;
-            animation: tickerSlideToRight 28s linear infinite;
+            will-change: transform;
+            animation: tickerSlideToRight 36s linear infinite;
+            transform: translate3d(0, 0, 0);
         }
 
         .apple-hero-ticker-item {
@@ -277,8 +319,8 @@
         }
 
         @keyframes tickerSlideToRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
+            0% { transform: translate3d(-33.3333%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
         }
 
         .apple-section-headline {
@@ -980,7 +1022,9 @@
                 </div>
 
                 <h1 class="apple-hero-headline">
-                    <span class="apple-rotating-role" id="heroAnimatedRole">{{ $settings['hero_title'] ?? 'Full Stack Web Developer' }}</span>
+                    <span class="apple-rotator-viewport" id="heroRotatorViewport">
+                        <span class="apple-rotator-item active" id="heroRoleCurrent">{{ $settings['hero_title'] ?? 'Full Stack Web Developer' }}</span>
+                    </span>
                 </h1>
 
                 <p class="apple-lead-text mx-auto mb-3" style="max-width: 640px;">
@@ -991,6 +1035,20 @@
                 <div class="apple-hero-ticker-wrap">
                     <div class="apple-hero-ticker-track">
                         <div class="apple-hero-ticker-item">
+                            <span>Full Stack Web Developer</span>
+                            <span class="bullet">•</span>
+                            <span>Software Engineer</span>
+                            <span class="bullet">•</span>
+                            <span>Backend Architect</span>
+                            <span class="bullet">•</span>
+                            <span>Laravel & PHP Specialist</span>
+                            <span class="bullet">•</span>
+                            <span>Next.js & Frontend Engineer</span>
+                            <span class="bullet">•</span>
+                            <span>Database & RESTful API</span>
+                            <span class="bullet">•</span>
+                        </div>
+                        <div class="apple-hero-ticker-item" aria-hidden="true">
                             <span>Full Stack Web Developer</span>
                             <span class="bullet">•</span>
                             <span>Software Engineer</span>
@@ -1722,36 +1780,47 @@
                 }
             };
 
-            // Animated Hero Role Slider (Smooth Right Sliding Motion)
-            const heroRoles = [
-                "Full Stack Web Developer",
-                "Software Engineer",
-                "Laravel & PHP Specialist",
-                "Next.js & Frontend Developer",
-                "Backend & REST API Architect"
-            ];
-            let currentRoleIdx = 0;
-            const heroRoleEl = document.getElementById('heroAnimatedRole');
+            // Silky Smooth Apple Kinetic Role Rotator (Parallel Slide to Right)
+            const rotatorViewport = document.getElementById('heroRotatorViewport');
+            if (rotatorViewport) {
+                let currentItem = document.getElementById('heroRoleCurrent');
+                const heroRoles = [
+                    "Full Stack Web Developer",
+                    "Software Engineer",
+                    "Laravel & PHP Specialist",
+                    "Next.js & Frontend Developer",
+                    "Backend & REST API Architect"
+                ];
+                let currentRoleIdx = 0;
 
-            if (heroRoleEl) {
                 setInterval(() => {
-                    heroRoleEl.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease';
-                    heroRoleEl.style.transform = 'translateX(60px)';
-                    heroRoleEl.style.opacity = '0';
+                    currentRoleIdx = (currentRoleIdx + 1) % heroRoles.length;
+                    const nextText = heroRoles[currentRoleIdx];
 
-                    setTimeout(() => {
-                        currentRoleIdx = (currentRoleIdx + 1) % heroRoles.length;
-                        heroRoleEl.textContent = heroRoles[currentRoleIdx];
-                        heroRoleEl.style.transition = 'none';
-                        heroRoleEl.style.transform = 'translateX(-60px)';
-                        heroRoleEl.style.opacity = '0';
+                    // Prepare new element sliding in from left to center
+                    const nextItem = document.createElement('span');
+                    nextItem.className = 'apple-rotator-item slide-in-left';
+                    nextItem.textContent = nextText;
+                    rotatorViewport.appendChild(nextItem);
 
+                    // Force browser layout reflow to register initial state
+                    void nextItem.offsetWidth;
+
+                    // Transition current item out to right and next item into center
+                    if (currentItem) {
+                        currentItem.classList.remove('active');
+                        currentItem.classList.add('slide-out-right');
+                        const staleItem = currentItem;
                         setTimeout(() => {
-                            heroRoleEl.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease';
-                            heroRoleEl.style.transform = 'translateX(0)';
-                            heroRoleEl.style.opacity = '1';
-                        }, 50);
-                    }, 400);
+                            if (staleItem && staleItem.parentNode) {
+                                staleItem.parentNode.removeChild(staleItem);
+                            }
+                        }, 700);
+                    }
+
+                    nextItem.classList.remove('slide-in-left');
+                    nextItem.classList.add('active');
+                    currentItem = nextItem;
                 }, 3400);
             }
 
