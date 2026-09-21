@@ -221,9 +221,9 @@
         }
 
         .apple-hero-headline {
-            font-size: clamp(36px, 5.5vw, 72px);
+            font-size: clamp(28px, 5.2vw, 64px);
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.15;
             letter-spacing: -0.035em;
             color: var(--color-ink);
             margin-bottom: 20px;
@@ -231,6 +231,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            width: 100%;
+            min-height: 1.25em;
         }
 
         .apple-rotator-viewport {
@@ -238,10 +240,11 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            min-height: 1.18em;
+            min-height: 1.25em;
+            max-width: 100%;
             overflow: hidden;
             vertical-align: middle;
-            padding: 4px 10px;
+            padding: 4px 12px;
         }
 
         .apple-rotator-item {
@@ -259,7 +262,7 @@
         }
 
         .apple-rotator-item.slide-out-right {
-            transform: translate3d(80px, 0, 0);
+            transform: translate3d(70px, 0, 0);
             opacity: 0;
             filter: blur(8px);
             position: absolute;
@@ -267,7 +270,7 @@
         }
 
         .apple-rotator-item.slide-in-left {
-            transform: translate3d(-80px, 0, 0);
+            transform: translate3d(-70px, 0, 0);
             opacity: 0;
             filter: blur(8px);
             position: absolute;
@@ -278,6 +281,16 @@
             opacity: 1;
             filter: blur(0px);
             position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .apple-hero-headline {
+                font-size: clamp(24px, 6.2vw, 36px);
+                min-height: 1.35em;
+            }
+            .apple-rotator-viewport {
+                min-height: 1.35em;
+            }
         }
 
         .apple-hero-ticker-wrap {
@@ -1787,9 +1800,9 @@
                 const heroRoles = [
                     "Full Stack Web Developer",
                     "Software Engineer",
-                    "Laravel & PHP Specialist",
-                    "Next.js & Frontend Developer",
-                    "Backend & REST API Architect"
+                    "Backend Architect",
+                    "Frontend Developer",
+                    "Laravel & Next.js Pro"
                 ];
                 let currentRoleIdx = 0;
 
