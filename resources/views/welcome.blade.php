@@ -1689,29 +1689,55 @@
                     <div class="col-lg-7">
                         <div class="apple-card-white p-4 p-md-5">
                             @if(session('success'))
-                                <div class="alert alert-success border-0 mb-4 rounded-4" style="background-color: #e6f4ea; color: #137333; font-size: 14px;">
-                                    <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+                                <div class="alert alert-success border-0 mb-4 rounded-4" style="background-color: #e6f4ea; color: #137333; font-size: 14px; padding: 16px 20px;">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-check-circle me-2 fs-5"></i>
+                                        <div>
+                                            <div class="fw-semibold">Pesan Berhasil Terkirim!</div>
+                                            <div style="font-size: 13px;">{{ session('success') }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             @endif
 
-                            <form action="{{ route('contact.store') }}" method="POST">
+                            @if($errors->any())
+                                <div class="alert alert-danger border-0 mb-4 rounded-4" style="background-color: #fde8e8; color: #9b1c1c; font-size: 14px; padding: 16px 20px;">
+                                    <div class="fw-semibold mb-1"><i class="fas fa-exclamation-circle me-2"></i> Mohon lengkapi formulir dengan benar:</div>
+                                    <ul class="mb-0 ps-3" style="font-size: 13px;">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form action="{{ route('contact.store') }}" method="POST" id="contactForm" onsubmit="const btn = document.getElementById('btnSubmitContact'); btn.disabled = true; btn.innerHTML = 'Mengirim Pesan...';">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="apple-body-muted d-block mb-2 fw-medium">Nama Lengkap</label>
-                                    <input type="text" name="name" class="apple-input-field" placeholder="Masukkan nama Anda" required>
+                                    <input type="text" name="name" class="apple-input-field @error('name') is-invalid @enderror" placeholder="Masukkan nama Anda" value="{{ old('name') }}" minlength="2" required>
+                                    @error('name')
+                                        <div class="text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="apple-body-muted d-block mb-2 fw-medium">Alamat Email</label>
-                                    <input type="email" name="email" class="apple-input-field" placeholder="nama@email.com" required>
+                                    <input type="email" name="email" class="apple-input-field @error('email') is-invalid @enderror" placeholder="nama@email.com" value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <div class="text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4">
                                     <label class="apple-body-muted d-block mb-2 fw-medium">Pesan</label>
-                                    <textarea name="message" class="apple-textarea-field" rows="4" placeholder="Ceritakan detail proyek atau pertanyaan Anda..." required></textarea>
+                                    <textarea name="message" class="apple-textarea-field @error('message') is-invalid @enderror" rows="4" placeholder="Ceritakan detail proyek atau pertanyaan Anda..." minlength="3" required>{{ old('message') }}</textarea>
+                                    @error('message')
+                                        <div class="text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
-                                <button type="submit" class="btn-apple-primary w-100 py-3" style="font-size: 14px;">
+                                <button type="submit" id="btnSubmitContact" class="btn-apple-primary w-100 py-3" style="font-size: 14px;">
                                     Kirim Pesan Melalui Sistem ›
                                 </button>
                             </form>

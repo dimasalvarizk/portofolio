@@ -65,18 +65,25 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. Validasi Input
+        // 1. Validasi Input dengan pesan kustom bahasa Indonesia
         $validated = $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-            'message' => 'required|min:10',
+            'name' => 'required|string|min:2|max:100',
+            'email' => 'required|email|max:150',
+            'message' => 'required|string|min:3|max:3000',
+        ], [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'name.min' => 'Nama minimal terdiri dari 2 karakter.',
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email' => 'Format alamat email tidak valid.',
+            'message.required' => 'Pesan tidak boleh kosong.',
+            'message.min' => 'Pesan minimal terdiri dari 3 karakter.',
         ]);
 
         // 2. Simpan ke Database
         Contact::create($validated);
 
         // 3. Kembali ke halaman dengan pesan sukses
-        return redirect('/#contact')->with('success', 'Terima kasih! Pesan Anda telah terkirim.');
+        return redirect('/#contact')->with('success', 'Terima kasih! Pesan Anda telah berhasil dikirim dan tersimpan di sistem.');
     }
 
     /**
