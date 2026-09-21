@@ -293,49 +293,6 @@
             }
         }
 
-        .apple-hero-ticker-wrap {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            margin: 24px 0 32px;
-            padding: 12px 0;
-            background: linear-gradient(90deg, transparent, rgba(245, 245, 247, 0.9) 15%, rgba(245, 245, 247, 0.9) 85%, transparent);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent 100%);
-            -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent 100%);
-        }
-
-        .apple-hero-ticker-track {
-            display: inline-flex;
-            gap: 28px;
-            will-change: transform;
-            animation: tickerSlideToRight 36s linear infinite;
-            transform: translate3d(0, 0, 0);
-        }
-
-        .apple-hero-ticker-item {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--color-slate);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 28px;
-            white-space: nowrap;
-        }
-
-        .apple-hero-ticker-item .bullet {
-            color: var(--color-pricing-blue);
-            font-size: 14px;
-        }
-
-        @keyframes tickerSlideToRight {
-            0% { transform: translate3d(-33.3333%, 0, 0); }
-            100% { transform: translate3d(0, 0, 0); }
-        }
-
         .apple-section-headline {
             font-size: clamp(30px, 4.5vw, 48px);
             font-weight: 700;
@@ -1089,57 +1046,9 @@
                     </span>
                 </h1>
 
-                <p class="apple-lead-text mx-auto mb-3" style="max-width: 640px;">
+                <p class="apple-lead-text mx-auto mb-4" style="max-width: 640px;">
                     Mengembangkan aplikasi web modern berkinerja tinggi, arsitektur modular yang tangguh, dan integrasi sistem cerdas.
                 </p>
-
-                <!-- Kinetic Marquee Track Running Continuously to the Right -->
-                <div class="apple-hero-ticker-wrap">
-                    <div class="apple-hero-ticker-track">
-                        <div class="apple-hero-ticker-item">
-                            <span>Full Stack Web Developer</span>
-                            <span class="bullet">•</span>
-                            <span>Software Engineer</span>
-                            <span class="bullet">•</span>
-                            <span>Backend Architect</span>
-                            <span class="bullet">•</span>
-                            <span>Laravel & PHP Specialist</span>
-                            <span class="bullet">•</span>
-                            <span>Next.js & Frontend Engineer</span>
-                            <span class="bullet">•</span>
-                            <span>Database & RESTful API</span>
-                            <span class="bullet">•</span>
-                        </div>
-                        <div class="apple-hero-ticker-item" aria-hidden="true">
-                            <span>Full Stack Web Developer</span>
-                            <span class="bullet">•</span>
-                            <span>Software Engineer</span>
-                            <span class="bullet">•</span>
-                            <span>Backend Architect</span>
-                            <span class="bullet">•</span>
-                            <span>Laravel & PHP Specialist</span>
-                            <span class="bullet">•</span>
-                            <span>Next.js & Frontend Engineer</span>
-                            <span class="bullet">•</span>
-                            <span>Database & RESTful API</span>
-                            <span class="bullet">•</span>
-                        </div>
-                        <div class="apple-hero-ticker-item" aria-hidden="true">
-                            <span>Full Stack Web Developer</span>
-                            <span class="bullet">•</span>
-                            <span>Software Engineer</span>
-                            <span class="bullet">•</span>
-                            <span>Backend Architect</span>
-                            <span class="bullet">•</span>
-                            <span>Laravel & PHP Specialist</span>
-                            <span class="bullet">•</span>
-                            <span>Next.js & Frontend Engineer</span>
-                            <span class="bullet">•</span>
-                            <span>Database & RESTful API</span>
-                            <span class="bullet">•</span>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap mb-4">
                     <a href="#projects" class="btn-pricing-blue-pill py-2 px-4" style="font-size: 14px; font-weight: 500;">
