@@ -214,11 +214,25 @@
         .apple-kicker {
             font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--color-launch-orange);
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .apple-section-header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 38px;
+        }
+
+        .apple-section-header-wrap .apple-section-headline {
+            margin-bottom: 0;
         }
 
         .apple-hero-headline {
@@ -295,32 +309,35 @@
         }
 
         .apple-section-headline {
-            font-size: clamp(30px, 4.5vw, 48px);
+            font-size: clamp(28px, 3.8vw, 44px);
             font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
+            line-height: 1.18;
+            letter-spacing: -0.025em;
             color: var(--color-ink);
             margin-bottom: 12px;
+            text-align: left;
         }
 
         .apple-lead-text {
-            font-size: clamp(16px, 1.8vw, 20px);
-            line-height: 1.5;
+            font-size: clamp(15px, 1.6vw, 19px);
+            line-height: 1.6;
             letter-spacing: -0.015em;
             color: var(--color-slate);
             font-weight: 400;
+            text-align: left;
         }
 
         .apple-body-muted {
-            font-size: 15px;
-            line-height: 1.5;
+            font-size: 14.5px;
+            line-height: 1.55;
             color: var(--color-slate);
+            text-align: left;
         }
 
         .apple-link-blue {
             color: var(--color-apple-blue);
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14.5px;
             font-weight: 500;
             letter-spacing: -0.015em;
             display: inline-flex;
@@ -410,6 +427,10 @@
             max-width: 980px;
             margin: 0 auto;
             padding: 0 24px;
+        }
+
+        .apple-hero-section .apple-lead-text {
+            text-align: center;
         }
 
         .apple-hero-stage-visual {
@@ -510,6 +531,11 @@
         .apple-card-white:hover {
             border-color: #d2d2d7;
             box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.04);
+        }
+
+        .apple-spec-card {
+            background-color: var(--color-studio-mist) !important;
+            padding: 32px;
         }
 
         /* Apple Tech Bento & Skills Matrix (Clean & Balanced) */
@@ -908,36 +934,77 @@
         }
 
         /* --------------------------------------------------------------------------
-           APPLE INTELLIGENCE CHATBOT WIDGET (Clean Minimalist Apple Design)
+           FLOATING ACTIONS: WHATSAPP & APPLE INTELLIGENCE CHATBOT (Synchronized)
            -------------------------------------------------------------------------- */
+        .apple-wa-pill {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            height: 42px;
+            padding: 0 18px;
+            box-sizing: border-box;
+            background-color: #25d366;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-pills);
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            z-index: 1050;
+            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.32);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .apple-wa-pill i {
+            font-size: 16px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .apple-wa-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+            color: #ffffff !important;
+        }
+
         .apple-ai-trigger-wrap {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 28px;
+            right: 28px;
             z-index: 1050;
         }
 
         .apple-ai-trigger {
+            height: 42px;
+            padding: 0 18px;
+            box-sizing: border-box;
             background-color: rgba(255, 255, 255, 0.95);
             color: var(--color-ink);
             border: 1px solid var(--color-hairline-silver);
             border-radius: var(--radius-pills);
-            padding: 8px 18px;
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
             font-size: 13px;
             font-weight: 600;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
         }
 
         .apple-ai-trigger:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
             border-color: var(--color-pricing-blue);
         }
 
@@ -946,15 +1013,20 @@
             color: #ffffff;
             font-size: 10px;
             font-weight: 700;
-            padding: 2px 7px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 18px;
+            padding: 0 7px;
             border-radius: 9999px;
             letter-spacing: 0.03em;
         }
 
         .apple-ai-window {
             position: fixed;
-            bottom: 95px;
-            right: 30px;
+            bottom: 84px;
+            right: 28px;
             width: 380px;
             height: 540px;
             background-color: var(--color-gallery-white);
@@ -1259,86 +1331,187 @@
         /* Full Responsive Breakpoint Rules */
         @media (max-width: 991px) {
             .apple-floating-nav-links { display: none !important; }
-            .apple-hero-section { padding-top: 100px; }
-            .apple-section-white, .apple-section-mist { padding: 75px 0; }
+            .apple-hero-section { padding-top: 95px; }
+            .apple-section-white, .apple-section-mist { padding: 56px 0; }
+            .apple-section-header-wrap { margin-bottom: 30px; }
         }
 
         @media (max-width: 768px) {
-            .apple-hero-section { padding: 90px 16px 0; }
-            .apple-section-white, .apple-section-mist { padding: 55px 0; }
+            .container { padding-left: 20px; padding-right: 20px; }
+            .apple-hero-section { padding: 85px 16px 0; }
+            .apple-section-white, .apple-section-mist { padding: 48px 0; }
             .apple-hero-edgefree-img { max-height: 380px; }
-            .apple-card-white, .apple-tech-card { border-radius: 20px; padding: 24px 20px; }
-            .apple-section-headline { font-size: clamp(24px, 5.5vw, 36px); }
+            .apple-card-white, .apple-tech-card, .apple-cert-card, .apple-project-card, .apple-timeline-box, .apple-spec-card {
+                border-radius: 20px;
+                padding: 22px 18px;
+            }
+            .apple-section-headline { font-size: clamp(24px, 5vw, 32px); line-height: 1.2; }
+            .apple-section-header-wrap { margin-bottom: 24px; gap: 10px; }
             .stat-col-divider { margin-bottom: 12px; }
+
+            .apple-wa-pill {
+                bottom: 20px;
+                left: 20px;
+            }
+            .apple-ai-trigger-wrap {
+                bottom: 20px;
+                right: 20px;
+            }
+            .apple-ai-window {
+                bottom: 74px;
+                right: 20px;
+            }
         }
 
         @media (max-width: 576px) {
+            .container { padding-left: 18px; padding-right: 18px; }
             .apple-floating-nav-wrapper { top: 10px; padding: 0 10px; }
             .apple-floating-nav { height: 48px; padding: 0 12px; border-radius: 16px; }
             .apple-floating-nav-title { font-size: 15px; max-width: 130px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .btn-pricing-blue-pill, .btn-explore-pill { padding: 5px 12px; font-size: 11px; }
             .apple-mobile-menu-drawer { top: 58px; left: 10px; right: 10px; padding: 12px; }
             
+            .apple-section-white, .apple-section-mist { padding: 38px 0; }
+            .apple-section-header-wrap {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 6px !important;
+                margin-bottom: 20px !important;
+            }
+            .apple-section-header-wrap .apple-link-blue {
+                font-size: 13.5px;
+                margin-top: 2px;
+            }
+
+            .apple-kicker {
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                margin-bottom: 4px;
+            }
+
+            .apple-section-headline {
+                font-size: clamp(21px, 5.4vw, 26px);
+                line-height: 1.22;
+                letter-spacing: -0.02em;
+            }
+
             .apple-hero-section { padding: 75px 12px 0; }
             .apple-hero-headline { font-size: clamp(19px, 5.8vw, 28px); }
-            .apple-lead-text { font-size: 14px; line-height: 1.5; }
-            .apple-stats-bar { padding: 24px 0; }
-            .stat-number { font-size: 24px; min-height: 32px; }
-            .stat-label { font-size: 10px; }
+            .apple-lead-text { font-size: 14px; line-height: 1.6; }
+            .apple-body-muted { font-size: 13.5px; line-height: 1.55; }
+            .apple-stats-bar { padding: 22px 0; }
+            .stat-number { font-size: 22px; min-height: 28px; }
+            .stat-label { font-size: 10.5px; }
+
+            .apple-card-white, .apple-tech-card, .apple-cert-card, .apple-project-card, .apple-timeline-box, .apple-spec-card {
+                border-radius: 18px;
+                padding: 18px 16px;
+            }
+
+            .apple-tech-header {
+                margin-bottom: 12px;
+                padding-bottom: 10px;
+            }
+
+            .apple-tech-chip {
+                padding: 5px 11px;
+                font-size: 12px;
+            }
+
+            .apple-cert-title {
+                font-size: 15px;
+                min-height: auto;
+                margin-bottom: 6px;
+            }
+
+            .apple-cert-issuer-text {
+                font-size: 12.5px;
+                margin-bottom: 14px;
+            }
+
+            .apple-project-media-img {
+                height: 160px;
+            }
+
+            .apple-project-title {
+                font-size: 16px;
+                min-height: auto;
+                margin-bottom: 6px;
+            }
+
+            .apple-project-desc {
+                font-size: 12.5px;
+                min-height: auto;
+                margin-bottom: 10px;
+            }
+
+            .apple-timeline-box {
+                margin-bottom: 12px;
+            }
+
+            .apple-timeline-box h4 {
+                font-size: 16px;
+            }
+
+            .apple-input-field {
+                height: 46px;
+                padding: 0 16px;
+                font-size: 13.5px;
+                border-radius: 14px;
+            }
+
+            .apple-textarea-field {
+                padding: 12px 16px;
+                font-size: 13.5px;
+                border-radius: 16px;
+            }
 
             .apple-wa-pill {
                 bottom: 16px;
-                left: 12px;
-                padding: 8px 14px;
+                left: 14px;
+                height: 38px;
+                padding: 0 13px;
                 font-size: 12px;
+                gap: 6px;
                 box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
             }
 
+            .apple-wa-pill i {
+                font-size: 14px;
+            }
+
             .apple-ai-trigger-wrap {
-                right: 12px;
+                right: 14px;
                 bottom: 16px;
             }
 
             .apple-ai-trigger {
-                height: 40px;
-                padding: 0 14px;
+                height: 38px;
+                padding: 0 13px;
                 font-size: 12px;
+                gap: 6px;
+            }
+
+            .apple-ai-trigger-badge {
+                height: 16px;
+                padding: 0 6px;
+                font-size: 9px;
             }
 
             .apple-ai-window {
                 right: 10px;
                 left: 10px;
-                bottom: 66px;
+                bottom: 64px;
                 width: auto;
                 max-width: calc(100vw - 20px);
-                height: calc(100dvh - 85px);
+                height: calc(100dvh - 80px);
                 max-height: 520px;
                 border-radius: 20px;
             }
-        }
 
-        .apple-wa-pill {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background-color: #25d366;
-            color: #ffffff !important;
-            padding: 10px 20px;
-            border-radius: var(--radius-pills);
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            z-index: 1050;
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
-            transition: transform 0.2s ease;
-        }
-
-        .apple-wa-pill:hover {
-            transform: scale(1.04);
-            color: #ffffff !important;
+            .apple-footer-wrap {
+                padding: 36px 0 56px;
+            }
         }
 
         .apple-footer-wrap {
@@ -1430,7 +1603,7 @@
                     </span>
                 </h1>
 
-                <p class="apple-lead-text mx-auto mb-4" style="max-width: 640px;">
+                <p class="apple-lead-text text-center mx-auto mb-4" style="max-width: 640px; text-align: center;">
                     {{ $settings['hero_description'] ?? 'Mengembangkan aplikasi web modern berkinerja tinggi, arsitektur modular yang tangguh, dan integrasi sistem cerdas.' }}
                 </p>
 
@@ -1485,26 +1658,30 @@
         <!-- 4. ABOUT SECTION (Gallery White) -->
         <section class="apple-section-white" id="about" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="row g-5 align-items-stretch">
+                <div class="row g-4 g-lg-5 align-items-stretch">
                     <div class="col-lg-7 d-flex flex-column justify-content-between">
                         <div>
-                            <div class="apple-kicker">Profil & Filosofi</div>
-                            <h2 class="apple-section-headline mb-4">
-                                Kode bersih. Kinerja terukur. Detail yang sempurna.
-                            </h2>
-                            <p class="apple-lead-text mb-4" style="text-align: justify; font-size: 16px; line-height: 1.65;">
-                                {{ $settings['about_bio'] ?? 'Saya adalah mahasiswa Teknik Informatika di Universitas Muhammadiyah Purwokerto dengan spesialisasi pengembangan full-stack web. Berfokus pada pembangunan arsitektur aplikasi yang tangguh, aman, dan dirancang untuk memberikan pengalaman pengguna tanpa cela.' }}
+                            <div class="apple-section-header-wrap mb-3 mb-md-4">
+                                <div>
+                                    <div class="apple-kicker">Profil & Filosofi</div>
+                                    <h2 class="apple-section-headline">
+                                        Kode bersih. Kinerja terukur. Detail yang sempurna.
+                                    </h2>
+                                </div>
+                            </div>
+                            <p class="apple-lead-text mb-4" style="text-align: justify; text-justify: inter-word; line-height: 1.75;">
+                                {!! nl2br(e($settings['about_bio'] ?? 'Saya adalah mahasiswa Teknik Informatika di Universitas Muhammadiyah Purwokerto dengan spesialisasi pengembangan full-stack web. Berfokus pada pembangunan arsitektur aplikasi yang tangguh, aman, dan dirancang untuk memberikan pengalaman pengguna tanpa cela.')) !!}
                             </p>
                         </div>
-                        <div class="p-4 rounded-4" style="background-color: var(--color-studio-mist); border: 1px solid var(--color-border-card);">
-                            <p class="apple-body-muted mb-0" style="font-size: 14px; line-height: 1.6;">
+                        <div class="p-3 p-md-4 rounded-4" style="background-color: var(--color-studio-mist); border: 1px solid var(--color-border-card);">
+                            <p class="apple-body-muted mb-0" style="text-align: justify; text-justify: inter-word; line-height: 1.65;">
                                 <strong class="text-dark">Fokus Rekayasa:</strong> Pengalaman mencakup integrasi RESTful API terstandarisasi, optimalisasi performa database, penerapan prinsip kode bersih (*clean architecture*), dan desain antarmuka responsif modern.
                             </p>
                         </div>
                     </div>
 
                     <div class="col-lg-5">
-                        <div class="apple-card-white h-100" style="background-color: var(--color-studio-mist); padding: 32px;">
+                        <div class="apple-card-white apple-spec-card h-100">
                             <div>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span class="apple-kicker mb-0">Spesifikasi Pengembang</span>
@@ -1558,10 +1735,10 @@
         <!-- 5. SKILLS & ARCHITECTURE MATRIX (Studio Mist) -->
         <section class="apple-section-mist" id="skills" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+                <div class="apple-section-header-wrap">
                     <div>
                         <div class="apple-kicker">Spesifikasi Arsitektur</div>
-                        <h2 class="apple-section-headline mb-0">Teknologi & Ekosistem.</h2>
+                        <h2 class="apple-section-headline">Teknologi & Ekosistem.</h2>
                     </div>
                     <a href="#projects" class="apple-link-blue">
                         <span>Lihat Implementasi Proyek</span>
@@ -1601,17 +1778,19 @@
         <!-- 6. EXPERIENCE & EDUCATION (Gallery White) -->
         <section class="apple-section-white" id="experience" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="mb-5">
-                    <div class="apple-kicker">Rekam Jejak</div>
-                    <h2 class="apple-section-headline">Pengalaman & Pendidikan.</h2>
+                <div class="apple-section-header-wrap">
+                    <div>
+                        <div class="apple-kicker">Rekam Jejak</div>
+                        <h2 class="apple-section-headline">Pengalaman & Pendidikan.</h2>
+                    </div>
                 </div>
 
-                <div class="row g-5">
+                <div class="row g-4 g-lg-5">
                     <!-- Left: Pengalaman Kerja -->
                     <div class="col-lg-6">
-                        <div class="d-flex align-items-center gap-2 mb-4">
+                        <div class="d-flex align-items-center gap-2 mb-3 mb-md-4">
                             <i class="fas fa-briefcase text-dark"></i>
-                            <h3 style="font-size: 20px; font-weight: 700; color: var(--color-ink); margin: 0;">Pengalaman Kerja & Proyek</h3>
+                            <h3 style="font-size: 18px; font-weight: 700; color: var(--color-ink); margin: 0;">Pengalaman Kerja & Proyek</h3>
                         </div>
 
                         @php
@@ -1621,10 +1800,10 @@
                         @forelse($workTimeline as $item)
                             <div class="apple-timeline-box">
                                 <div class="apple-kicker mb-1" style="font-size: 11px;">{{ $item->period }}</div>
-                                <h4 style="font-size: 18px; font-weight: 700; color: var(--color-ink); margin-bottom: 4px;">{{ $item->title }}</h4>
-                                <div style="font-size: 14px; font-weight: 500; color: var(--color-apple-blue); margin-bottom: 10px;">{{ $item->subtitle }}</div>
+                                <h4 style="font-size: 17px; font-weight: 700; color: var(--color-ink); margin-bottom: 4px;">{{ $item->title }}</h4>
+                                <div style="font-size: 13.5px; font-weight: 500; color: var(--color-apple-blue); margin-bottom: 8px;">{{ $item->subtitle }}</div>
                                 @if($item->description)
-                                    <p class="apple-body-muted mb-0" style="text-align: justify; font-size: 14px;">{!! nl2br(e($item->description)) !!}</p>
+                                    <p class="apple-body-muted mb-0">{!! nl2br(e($item->description)) !!}</p>
                                 @endif
                             </div>
                         @empty
@@ -1634,9 +1813,9 @@
 
                     <!-- Right: Pendidikan Formal -->
                     <div class="col-lg-6">
-                        <div class="d-flex align-items-center gap-2 mb-4">
+                        <div class="d-flex align-items-center gap-2 mb-3 mb-md-4">
                             <i class="fas fa-graduation-cap text-dark"></i>
-                            <h3 style="font-size: 20px; font-weight: 700; color: var(--color-ink); margin: 0;">Pendidikan</h3>
+                            <h3 style="font-size: 18px; font-weight: 700; color: var(--color-ink); margin: 0;">Pendidikan</h3>
                         </div>
 
                         @php
@@ -1646,10 +1825,10 @@
                         @forelse($educationTimeline as $item)
                             <div class="apple-timeline-box">
                                 <div class="apple-kicker mb-1" style="font-size: 11px;">{{ $item->period }}</div>
-                                <h4 style="font-size: 18px; font-weight: 700; color: var(--color-ink); margin-bottom: 4px;">{{ $item->title }}</h4>
-                                <div style="font-size: 14px; font-weight: 500; color: var(--color-apple-blue); margin-bottom: 10px;">{{ $item->subtitle }}</div>
+                                <h4 style="font-size: 17px; font-weight: 700; color: var(--color-ink); margin-bottom: 4px;">{{ $item->title }}</h4>
+                                <div style="font-size: 13.5px; font-weight: 500; color: var(--color-apple-blue); margin-bottom: 8px;">{{ $item->subtitle }}</div>
                                 @if($item->description)
-                                    <p class="apple-body-muted mb-0" style="text-align: justify; font-size: 14px;">{!! nl2br(e($item->description)) !!}</p>
+                                    <p class="apple-body-muted mb-0">{!! nl2br(e($item->description)) !!}</p>
                                 @endif
                             </div>
                         @empty
@@ -1663,10 +1842,10 @@
         <!-- 7. CERTIFICATIONS SHOWCASE (Studio Mist) -->
         <section class="apple-section-mist" id="certifications" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+                <div class="apple-section-header-wrap">
                     <div>
                         <div class="apple-kicker">Validasi Resmi</div>
-                        <h2 class="apple-section-headline mb-0">Sertifikasi Profesional.</h2>
+                        <h2 class="apple-section-headline">Sertifikasi Profesional.</h2>
                     </div>
                     <span class="apple-body-muted d-none d-md-inline" style="font-size: 13px;">
                         {{ count($certifications) }} Kredensial Terverifikasi
@@ -1718,10 +1897,10 @@
         <!-- 8. PROJECTS SHOWCASE (Gallery White) -->
         <section class="apple-section-white" id="projects" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+                <div class="apple-section-header-wrap mb-3 mb-md-4">
                     <div>
                         <div class="apple-kicker">Galeri Inovasi</div>
-                        <h2 class="apple-section-headline mb-0">Karya Unggulan.</h2>
+                        <h2 class="apple-section-headline">Karya Unggulan.</h2>
                     </div>
                     @if(isset($settings['github_link']))
                         <a href="{{ $settings['github_link'] }}" target="_blank" class="apple-link-blue">
@@ -1732,7 +1911,7 @@
                 </div>
 
                 <!-- Filter Controls (Horizontally Scrollable on Mobile) -->
-                <div class="apple-filter-scroll-wrap mb-4 mb-md-5">
+                <div class="apple-filter-scroll-wrap mb-3 mb-md-4">
                     <button class="apple-filter-btn active" data-filter="all">Semua</button>
                     @php
                         $categories = collect($projects)->pluck('category')->unique()->filter()->values();
@@ -1810,7 +1989,7 @@
 
                 <!-- Load More Button -->
                 @if(count($projects) > 6)
-                    <div class="text-center mt-5" id="load-more-container">
+                    <div class="text-center mt-4 mt-md-5" id="load-more-container">
                         <button id="load-more-btn" class="btn-apple-secondary px-4 py-2">
                             <span id="load-more-btn-text">Tampilkan Lebih Banyak</span>
                             <i class="fas fa-chevron-down ms-1" id="load-more-btn-icon"></i>
@@ -1823,11 +2002,15 @@
         <!-- 9. CONTACT SECTION (Studio Mist) -->
         <section class="apple-section-mist" id="contact" data-aos="fade-up">
             <div class="container" style="max-width: 1080px;">
-                <div class="row g-5 align-items-center">
+                <div class="row g-4 g-lg-5 align-items-center">
                     <!-- Left: Contact Editorial Info -->
                     <div class="col-lg-5">
-                        <div class="apple-kicker">Mulai Percakapan</div>
-                        <h2 class="apple-section-headline mb-4">Wujudkan Ide Digital Anda.</h2>
+                        <div class="apple-section-header-wrap mb-3 mb-md-4">
+                            <div>
+                                <div class="apple-kicker">Mulai Percakapan</div>
+                                <h2 class="apple-section-headline">Wujudkan Ide Digital Anda.</h2>
+                            </div>
+                        </div>
                         <p class="apple-lead-text mb-4">
                             Siap berdiskusi mengenai proyek web, pengembangan sistem baru, atau peluang kerja sama teknologi.
                         </p>
@@ -1861,7 +2044,7 @@
 
                     <!-- Right: Form (28px White Card) -->
                     <div class="col-lg-7">
-                        <div class="apple-card-white p-4 p-md-5">
+                        <div class="apple-card-white p-3 p-md-5">
                             @if(session('success'))
                                 <div class="alert alert-success border-0 mb-4 rounded-4" style="background-color: #e6f4ea; color: #137333; font-size: 14px; padding: 16px 20px;">
                                     <div class="d-flex align-items-center">
